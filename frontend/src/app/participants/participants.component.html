@@ -5,30 +5,44 @@
         <table>
             <tr>
                 <td>Ime i prezime:</td>
-                <td><input type="text" [(ngModel)]='name'></td>
+                <td><input type="text" name='first-last-name' [(ngModel)]='name'></td>
             </tr>
             <tr>
-                <td>Zemlja</td>
-                <td><select></select></td>
+                <td>Zemlja:</td>
+                <td>
+                    <select>
+                        <option>Sve zemlje</option>
+                    </select>
+                </td>
             </tr>
             <tr>
                 <td>Sport:</td>
-                <td><select></select></td>
+                <td>
+                    <select>
+                        <option>Svi sportovi</option>
+                    </select>
+                </td>
             </tr>
             <tr>
                 <td>Disciplina:</td>
-                <td><select></select></td>
+                <td>
+                    <select>
+                        <option>Sve sportske discipline</option>
+                    </select>
+                </td>
             </tr>
             <tr>
                 <td>Pol</td>
                 <td>
-                    <input type="radio" />
-                    <input type="radio" />
+                    <input type="radio" /> M
+                </td>
+                <td>
+                    <input type="radio" /> Z
                 </td>
             </tr>
             <tr>
                 <td>
-                    <input type="checkbox">
+                    <input type="checkbox"> samo osvajaci medalja
                 </td>
             </tr>
             <tr>

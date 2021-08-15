@@ -21,6 +21,7 @@ export class ParticipantsComponent implements OnInit {
 
   searchParticipants() {
     alert(this.name);
+    console.log(this.name);
   }
 
 }
