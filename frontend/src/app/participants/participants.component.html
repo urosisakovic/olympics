@@ -5,21 +5,23 @@
         <table>
             <tr>
                 <td>Ime i prezime:</td>
-                <td><input type="text" name='first-last-name' [(ngModel)]='name'></td>
+                <td><input type="text" name='first-last-name' [(ngModel)]='selectedName'></td>
             </tr>
             <tr>
                 <td>Zemlja:</td>
                 <td>
-                    <select>
-                        <option>Sve zemlje</option>
+                    <select name='country-select' [(ngModel)]="selectedCountry">
+                        <option [value]='undefined'>Sve zemlje</option>
+                        <option [ngValue]='c' *ngFor='let c of allCountries'>{{c.name}}</option>
                     </select>
                 </td>
             </tr>
             <tr>
                 <td>Sport:</td>
                 <td>
-                    <select>
-                        <option>Svi sportovi</option>
+                    <select name='sport-select' [(ngModel)]="selectedSport">
+                        <option [value]='undefined'>Svi sportovi</option>
+                        <option [ngValue]='s' *ngFor='let s of allSports'>{{s.name}}</option>
                     </select>
                 </td>
             </tr>
@@ -34,15 +36,15 @@
             <tr>
                 <td>Pol</td>
                 <td>
-                    <input type="radio" /> M
+                    <input type="radio" name="gender" [value]='"M"' [(ngModel)]='selectedGender'/> M
                 </td>
                 <td>
-                    <input type="radio" /> Z
+                    <input type="radio" name="gender" [value]='"F"' [(ngModel)]='selectedGender'/> Z
                 </td>
             </tr>
             <tr>
                 <td>
-                    <input type="checkbox"> samo osvajaci medalja
+                    <input type="checkbox" name="only-medal-winners" [(ngModel)]='selectedOnlyMedalWinners'> samo osvajaci medalja
                 </td>
             </tr>
             <tr>
