@@ -1,1 +1,15 @@
-<p>countries works!</p>
+<div>
+    <h1>Zemlje</h1>
+    <table>
+        <tr>
+            <td>Zastava</td>
+            <td>Naziv zemlje</td>
+            <td>Broj sportista</td>
+        </tr>
+        <tr *ngFor='let country of allCountries'>
+            <td>{{country.flag}}</td>
+            <td>{{country.name}}</td>
+            <td>{{country.competitorsCount}}</td>
+        </tr>
+    </table>
+</div>

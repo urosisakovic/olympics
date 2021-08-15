@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CountriesService } from '../countries.service';
+import { Country } from '../data/country';
 
 @Component({
   selector: 'app-medals',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MedalsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private countriesService: CountriesService) { }
 
   ngOnInit(): void {
+    this.allCountries = this.countriesService.getAllCountries();
   }
+
+  allCountries!: Country[];
 
 }

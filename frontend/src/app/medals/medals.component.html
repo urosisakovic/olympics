@@ -1,1 +1,21 @@
-<p>medals works!</p>
+<div>
+    <h1>Medalje</h1>
+    <table>
+        <tr>
+            <td>Rang</td>
+            <td>Naziv zemlje</td>
+            <td>Zlatne medalje</td>
+            <td>Srebrne medalje</td>
+            <td>Bronzane medalje</td>
+            <td>Ukupno medalja</td>
+        </tr>
+        <tr *ngFor='let country of allCountries; let i = index'>
+            <td>{{i + 1}}</td>
+            <td>{{country.name}}</td>
+            <td>{{country.goldMedalsWon}}</td>
+            <td>{{country.silverMedalsWon}}</td>
+            <td>{{country.bronseMedalsWon}}</td>
+            <td>{{country.goldMedalsWon + country.silverMedalsWon + country.bronseMedalsWon}}</td>
+        </tr>
+    </table>
+</div>
