@@ -1,7 +1,6 @@
-export class Country {
+export class Participant {
     name!: string;
-    flag!: string;
-    participantCount!: number;
+    country!: string;
     goldMedalsWon!: number;
     silverMedalsWon!: number;
     bronzeMedalsWon!: number;
