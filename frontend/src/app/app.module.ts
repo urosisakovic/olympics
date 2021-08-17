@@ -7,13 +7,17 @@ import { AppComponent } from './app.component';
 import { CountriesComponent } from './countries/countries.component';
 import { MedalsComponent } from './medals/medals.component';
 import { ParticipantsComponent } from './participants/participants.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CountriesComponent,
     MedalsComponent,
-    ParticipantsComponent
+    ParticipantsComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
