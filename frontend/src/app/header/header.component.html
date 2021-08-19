@@ -1,0 +1,25 @@
+<div>
+    <a routerLink='/countries'>Zemlje</a> |
+    <a routerLink='/medals'>Medalje</a> |
+    <a routerLink='/participants'>Takmicari</a> | 
+    <a routerLink='/login'>Prijavi se</a>
+
+    <p *ngIf="loggedUser.type === 'org'">
+      organizator
+    </p>
+
+    <p *ngIf="loggedUser.type === 'delegat'">
+      delegat
+    </p>
+
+    <p *ngIf="loggedUser.type === 'lead'">
+      lider
+    </p>
+
+
+    <div *ngIf="loggedUser != null">
+      <a (click)="logout()">Odjavi se</a>
+    </div>
+
+
+  </div>

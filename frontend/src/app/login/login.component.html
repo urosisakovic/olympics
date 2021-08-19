@@ -5,15 +5,15 @@
         <table>
             <tr>
                 <td>Korisnicko ime: </td>
-                <td><input type="text"></td>
+                <td><input type="text" name="username" [(ngModel)]='username'></td>
             </tr>
             <tr>
                 <td>Lozinka: </td>
-                <td><input type="password"></td>
+                <td><input type="password" name="password" [(ngModel)]='password'></td>
             </tr>
             <tr>
                 <td>
-                    <button>Prijavi se</button>
+                    <button (click)='login()'>Prijavi se</button>
                 </td>
             </tr>
             <tr>
