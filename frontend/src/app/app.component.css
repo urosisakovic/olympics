@@ -1,0 +1,13 @@
+#content {
+    margin: 0 auto;
+    width: 1000px;
+}
+
+#wrapper {
+    min-height: 100%;
+    margin: 0 auto -50px;
+}
+
+#push {
+    height: 50px;
+}
