@@ -1,25 +1,29 @@
-<div>
-    <a routerLink='/countries'>Zemlje</a> |
-    <a routerLink='/medals'>Medalje</a> |
-    <a routerLink='/participants'>Takmicari</a> | 
-    <a routerLink='/login'>Prijavi se</a>
+<nav>
+  <ul>
+    <li>
+      <a routerLink='/countries'>Zemlje</a>
+    </li>
+    <li>
+      <a routerLink='/participants'>Takmicari</a>
+    </li>
+    <li>
+      <a routerLink='/login'>Prijavi se</a>
+    </li>
 
-    <p *ngIf="loggedUser.type === 'org'">
-      organizator
-    </p>
+    <li *ngIf="loggedUser.type === 'org'">
+      <a routerLink='/'>Organizator</a>
+    </li>
 
-    <p *ngIf="loggedUser.type === 'delegat'">
-      delegat
-    </p>
+    <li *ngIf="loggedUser.type === 'delegat'">
+      <a routerLink='/'>Organizator</a>
+    </li>
 
-    <p *ngIf="loggedUser.type === 'lead'">
-      lider
-    </p>
+    <li *ngIf="loggedUser.type === 'lead'">
+      <a routerLink='/'>Organizator</a>
+    </li>
 
-
-    <div *ngIf="loggedUser != null">
-      <a (click)="logout()">Odjavi se</a>
-    </div>
-
-
-  </div>
+    <li *ngIf="loggedUser != null">
+      <a routerLink='/' (click)="logout()">Odjavi se</a>
+    </li>
+  </ul>
+</nav>
