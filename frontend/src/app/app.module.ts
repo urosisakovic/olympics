@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { OrgEditSportsComponent } from './org-edit-sports/org-edit-sports.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { FooterComponent } from './footer/footer.component';
     LoginComponent,
     RegisterComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    OrgEditSportsComponent
   ],
   imports: [
     BrowserModule,

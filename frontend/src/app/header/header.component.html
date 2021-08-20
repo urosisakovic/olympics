@@ -14,6 +14,10 @@
       <a routerLink='/'>Organizator</a>
     </li>
 
+    <li *ngIf="loggedUser.type === 'org'">
+      <a routerLink='/org-edit-sports'>Upravljanje sportovima</a>
+    </li>
+
     <li *ngIf="loggedUser.type === 'delegat'">
       <a routerLink='/'>Organizator</a>
     </li>
