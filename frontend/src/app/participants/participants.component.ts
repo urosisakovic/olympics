@@ -4,7 +4,6 @@ import { Country } from '../data/country';
 import { Discipline } from '../data/discipline';
 import { Participant } from '../data/participant';
 import { Sport } from '../data/sport';
-import { DisciplinesService } from '../disciplines.service';
 import { ParticipantService } from '../participant.service';
 import { SportService } from '../sport.service';
 
@@ -18,14 +17,12 @@ export class ParticipantsComponent implements OnInit {
   constructor(
     private participantService: ParticipantService,
     private countriesService: CountriesService,
-    private sportService: SportService,
-    private disciplineService: DisciplinesService) { }
+    private sportService: SportService) { }
 
   ngOnInit(): void {
     this.allParticipants = this.participantService.getAllParticipants();
     this.allCountries = this.countriesService.getAllCountries();
     this.allSports = this.sportService.getAllSports();
-    this.allDisciplines = this.disciplineService.getAllDisciplines();
   }
 
   allParticipants!: Participant[];

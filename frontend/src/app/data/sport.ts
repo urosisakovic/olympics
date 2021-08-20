@@ -1,4 +1,7 @@
 export class Sport {
-    id!: string;
     name!: string;
+    discipline!: string;
+    type!: string;
+    minPlayers!:  number;
+    maxPlayers!: number;
 }

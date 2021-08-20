@@ -1,6 +1,6 @@
 export var allSports = [
-    {id: "basketball", name: "Kosarka"},
-    {id: "football", name: "Fudbal"},
-    {id: "atheltics", name: "Atletika"},
-    {id: "baseball", name: "Bejzbol"}
+    {name: "Kosarka", discipline: "", type: "team", minPlayers: 5, maxPlayers: 12},
+    {name: "Fudbal", discipline: "", type: "team", minPlayers: 11, maxPlayers: 23},
+    {name: "Atletika", discipline: "100m-sprint", type: "ind", minPlayers: -1, maxPlayers: -1},
+    {name: "Bejzbol", discipline: "", type: "team", minPlayers: 20, maxPlayers: 30}
 ]
