@@ -12,6 +12,7 @@ import { RegisterComponent } from './register/register.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { OrgEditSportsComponent } from './org-edit-sports/org-edit-sports.component';
+import { OrgEditCompetitionsComponent } from './org-edit-competitions/org-edit-competitions.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { OrgEditSportsComponent } from './org-edit-sports/org-edit-sports.compon
     RegisterComponent,
     HeaderComponent,
     FooterComponent,
-    OrgEditSportsComponent
+    OrgEditSportsComponent,
+    OrgEditCompetitionsComponent
   ],
   imports: [
     BrowserModule,
