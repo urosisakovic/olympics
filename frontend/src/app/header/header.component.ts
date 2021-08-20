@@ -14,7 +14,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     if (localStorage.getItem("loggedUser") != null && localStorage.getItem("loggedUser") != undefined) {
       this.loggedUser = JSON.parse(localStorage.getItem("loggedUser") || '{}');
-      alert(this.loggedUser.type);
     }
   }
 

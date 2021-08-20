@@ -12,4 +12,10 @@ export class OrgEditSportsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  selectedType!: string;
+
+  addSport() {
+    alert(this.selectedType);
+  }
+
 }

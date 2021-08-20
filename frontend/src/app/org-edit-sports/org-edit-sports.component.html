@@ -1,1 +1,78 @@
-<p>org-edit-sports works!</p>
+<h1>Dodaj sport</h1>
+<form>
+    <table>
+        <tr>
+            <td>
+                Ime sporta:
+            </td>
+            <td>
+                <input type="text" name="sport">
+            </td>
+        </tr>
+        <tr>
+            <td>Ime sportske discipline:</td>
+            <td>
+                <input type="text" name="sport-discipline">
+            </td>
+        </tr>
+        <tr>
+            <td>Vrsta sporta:</td>
+            <td>
+                <select name="type-select-group" [(ngModel)]="selectedType">
+                    <option [value]="'team'">Ekipni</option>
+                    <option [value]="'individual'">Individualni</option>
+                </select>
+            </td>
+        </tr>
+        <tr *ngIf="selectedType == 'team'">
+            <td>
+                Minimalni broj igraca:
+            </td>
+            <td>
+                <input type="number">
+            </td>
+        </tr>
+        <tr *ngIf="selectedType == 'team'">
+            <td>
+                Maksimalni broj igraca:
+            </td>
+            <td>
+                <input type="number">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button (click)="addSport()">Dodaj sport</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+
+<h1>Izbrisi sport</h1>
+
+<form>
+    <table>
+        <tr>
+            <td>
+                Sport:
+            </td>
+            <td>
+                <select></select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Disciplina:
+            </td>
+            <td>
+                <select></select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button>Izbrisi sport</button>
+            </td>
+        </tr>
+    </table>
+</form>
