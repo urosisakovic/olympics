@@ -18,6 +18,14 @@
       <a routerLink='/org-edit-sports'>Upravljanje sportovima</a>
     </li>
 
+    <li *ngIf="loggedUser.type === 'org'">
+      <a routerLink='/org-edit-competitions'>Upravljanje takmicenjima</a>
+    </li>
+
+    <li *ngIf="loggedUser.type === 'org'">
+      <a routerLink='/org-record-overview'>Pregled rekorda</a>
+    </li>
+
     <li *ngIf="loggedUser.type === 'delegat'">
       <a routerLink='/'>Organizator</a>
     </li>

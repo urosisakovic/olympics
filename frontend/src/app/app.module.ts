@@ -13,6 +13,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { OrgEditSportsComponent } from './org-edit-sports/org-edit-sports.component';
 import { OrgEditCompetitionsComponent } from './org-edit-competitions/org-edit-competitions.component';
+import { OrgRecordOverviewComponent } from './org-record-overview/org-record-overview.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { OrgEditCompetitionsComponent } from './org-edit-competitions/org-edit-c
     HeaderComponent,
     FooterComponent,
     OrgEditSportsComponent,
-    OrgEditCompetitionsComponent
+    OrgEditCompetitionsComponent,
+    OrgRecordOverviewComponent
   ],
   imports: [
     BrowserModule,
