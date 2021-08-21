@@ -38,6 +38,10 @@
       <a routerLink='/lead-register-competitors'>Prijavi takmicare</a>
     </li>
 
+    <li *ngIf="loggedUser.type === 'lead'">
+      <a routerLink='/lead-competitors-overview'>Pregled takmicara</a>
+    </li>
+
     <li *ngIf="loggedUser != null">
       <a routerLink='/' (click)="logout()">Odjavi se</a>
     </li>
