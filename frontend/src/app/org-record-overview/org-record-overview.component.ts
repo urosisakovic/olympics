@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Record } from '../data/record';
+import { RecordsService } from '../records.service';
 
 @Component({
   selector: 'app-org-record-overview',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrgRecordOverviewComponent implements OnInit {
 
-  constructor() { }
+  constructor(private recordsService: RecordsService) { }
 
   ngOnInit(): void {
+    this.allRecords = this.recordsService.getAllRecords();
   }
+
+  allRecords!: Record[];
 
 }

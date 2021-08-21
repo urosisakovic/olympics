@@ -1,1 +1,75 @@
-<p>org-record-overview works!</p>
+
+<h1>Pregled rekorda</h1>
+
+<table>
+    <tr>
+        <td>Sport</td>
+        <td>Disciplina</td>
+        <td>Mesto</td>
+        <td>Godina</td>
+        <td>Takmicar</td>
+        <td>Rekord</td>
+    </tr>
+    <tr *ngFor="let r of allRecords">
+        <td>{{r.sport}}</td>
+        <td>{{r.discipline}}</td>
+        <td>{{r.place}}</td>
+        <td>{{r.year}}</td>
+        <td>{{r.recordHolder}}</td>
+        <td>{{r.record}}</td>
+    </tr>
+</table>
+
+<h1>Dodaj rekord</h1>
+<form>
+    <table>
+        <tr>
+            <td>
+                Sport:
+            </td>
+            <td>
+                <select></select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Disciplina:
+            </td>
+            <td>
+                <select></select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Mesto:
+            </td>
+            <td>
+                <input type="text">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Godina:
+            </td>
+            <td>
+                <input type="number">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Takmicar:
+            </td>
+            <td>
+                <input type="text">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Record:
+            </td>
+            <td>
+                <input type="text">
+            </td>
+        </tr>
+    </table>
+</form>
