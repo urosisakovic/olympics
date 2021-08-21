@@ -27,11 +27,15 @@
     </li>
 
     <li *ngIf="loggedUser.type === 'delegat'">
-      <a routerLink='/'>Organizator</a>
+      <a routerLink='/'>Delegat</a>
     </li>
 
     <li *ngIf="loggedUser.type === 'lead'">
-      <a routerLink='/'>Organizator</a>
+      <a routerLink='/'>Vodja delegacije</a>
+    </li>
+
+    <li *ngIf="loggedUser.type === 'lead'">
+      <a routerLink='/lead-register-competitors'>Prijavi takmicare</a>
     </li>
 
     <li *ngIf="loggedUser != null">

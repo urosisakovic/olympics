@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CountriesComponent } from './countries/countries.component';
+import { LeadRegisterCompetitorsComponent } from './lead-register-competitors/lead-register-competitors.component';
 import { LoginComponent } from './login/login.component';
 import { MedalsComponent } from './medals/medals.component';
 import { OrgEditCompetitionsComponent } from './org-edit-competitions/org-edit-competitions.component';
@@ -17,7 +18,8 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'org-edit-sports', component: OrgEditSportsComponent},
   {path: 'org-edit-competitions', component: OrgEditCompetitionsComponent},
-  {path: 'org-record-overview', component: OrgRecordOverviewComponent}
+  {path: 'org-record-overview', component: OrgRecordOverviewComponent},
+  {path: 'lead-register-competitors', component: LeadRegisterCompetitorsComponent}
 ];
 
 @NgModule({
