@@ -16,6 +16,8 @@ import { OrgEditCompetitionsComponent } from './org-edit-competitions/org-edit-c
 import { OrgRecordOverviewComponent } from './org-record-overview/org-record-overview.component';
 import { LeadRegisterCompetitorsComponent } from './lead-register-competitors/lead-register-competitors.component';
 import { LeadCompetitorsOverviewComponent } from './lead-competitors-overview/lead-competitors-overview.component';
+import { OrgEditUsersComponent } from './org-edit-users/org-edit-users.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { LeadCompetitorsOverviewComponent } from './lead-competitors-overview/le
     OrgEditCompetitionsComponent,
     OrgRecordOverviewComponent,
     LeadRegisterCompetitorsComponent,
-    LeadCompetitorsOverviewComponent
+    LeadCompetitorsOverviewComponent,
+    OrgEditUsersComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

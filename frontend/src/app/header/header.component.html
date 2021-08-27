@@ -6,8 +6,13 @@
     <li>
       <a routerLink='/participants'>Takmicari</a>
     </li>
-    <li>
+
+    <li *ngIf="loggedUser == null">
       <a routerLink='/login'>Prijavi se</a>
+    </li>
+
+    <li *ngIf="loggedUser != null">
+      <a routerLink='/change-password'>Promeni lozinku</a>
     </li>
 
     <li *ngIf="loggedUser.type === 'org'">
@@ -20,6 +25,10 @@
 
     <li *ngIf="loggedUser.type === 'org'">
       <a routerLink='/org-edit-competitions'>Upravljanje takmicenjima</a>
+    </li>
+
+    <li *ngIf="loggedUser.type === 'org'">
+      <a routerLink='/org-edit-users'>Upravljanje nalozima</a>
     </li>
 
     <li *ngIf="loggedUser.type === 'org'">
