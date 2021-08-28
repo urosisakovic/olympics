@@ -21,7 +21,9 @@ export class ParticipantsComponent implements OnInit {
 
   ngOnInit(): void {
     this.allParticipants = this.participantService.getAllParticipants();
-    this.allCountries = this.countriesService.getAllCountries();
+    this.countriesService.getAllCountries().subscribe((data: any) => {
+      this.allCountries = data;
+    });
     this.allSports = this.sportService.getAllSports();
   }
 

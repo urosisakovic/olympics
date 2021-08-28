@@ -1,15 +1,17 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Country } from './data/country';
-import { allCountries } from './mockDB/countries';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CountriesService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getAllCountries(): Country[] {
-    return allCountries;
+  uri = 'http://localhost:4000';
+
+  getAllCountries() {
+    return this.http.get(`${this.uri}/all-countries`);
   }
 }

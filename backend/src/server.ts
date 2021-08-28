@@ -3,6 +3,7 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import mongoose, { mongo } from 'mongoose';
 import user from './model/user';
+import country from './model/country';
 
 const app = express();
 
@@ -31,6 +32,16 @@ router.route('/login').post((req, res) => {
             res.json(user);
         }
     })
+});
+
+router.route('/all-countries').get((req, res) => {
+    country.find({}, (err, c) => {
+        if (err)
+            console.log(err);
+        else {
+            res.json(c);
+        }
+    });
 });
 
 app.use('/', router);

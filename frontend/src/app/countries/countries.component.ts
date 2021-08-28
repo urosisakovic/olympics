@@ -12,7 +12,9 @@ export class CountriesComponent implements OnInit {
   constructor(private countriesService: CountriesService) { }
 
   ngOnInit(): void {
-    this.allCountries = this.countriesService.getAllCountries();
+    this.countriesService.getAllCountries().subscribe((data: any) => {
+      this.allCountries = data;
+    });
   }
 
   allCountries!: Country[];

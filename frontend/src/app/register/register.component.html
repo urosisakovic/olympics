@@ -5,35 +5,37 @@
         <table>
             <tr>
                 <td>Korisnicko ime: </td>
-                <td><input type="text"></td>
+                <td><input type="text" name="username" [(ngModel)]="selectedUsername"></td>
             </tr>
             <tr>
                 <td>Lozinka: </td>
-                <td><input type="password"></td>
+                <td><input type="password" name="password" [(ngModel)]="selectedPassword"></td>
             </tr>
             <tr>
                 <td>Potvrda lozinke: </td>
-                <td><input type="password"></td>
+                <td><input type="password" name="repeat-password" [(ngModel)]="selectedRepeatedPassword"></td>
             </tr>
             <tr>
                 <td>Ime: </td>
-                <td><input type="text"></td>
+                <td><input type="text" name="first-name" [(ngModel)]="selectedFirstName"></td>
             </tr>
             <tr>
                 <td>Prezime: </td>
-                <td><input type="text"></td>
+                <td><input type="text" name="last-name" [(ngModel)]="selectedLastName"></td>
             </tr>
             <tr>
                 <td>Zemlja: </td>
                 <td>
                     <select>
-                        <option>Zemlja</option>
+                        <option *ngFor='let country of allCountries'>
+                            {{ country.name }}
+                        </option>
                     </select>
                 </td>
             </tr>
             <tr>
                 <td>Email: </td>
-                <td><input type="text"></td>
+                <td><input type="text" name="email" [(ngModel)]="selectedEmail"></td>
             </tr>
             <tr>
                 <td>Tip korisnika: </td>
@@ -46,7 +48,7 @@
             </tr>
             <tr>
                 <td>
-                    <button>Registruj se</button>
+                    <button (click)="register()">Registruj se</button>
                 </td>
             </tr>
         </table>
