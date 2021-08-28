@@ -4,10 +4,29 @@
     <table>
         <tr>
             <td>
+                Naziv takmicenja:
+            </td>
+            <td>
+                <input type="text">
+            </td>
+        </tr>
+        <tr>
+            <td>
                 Sport:
             </td>
             <td>
-                <select></select>
+                <select name='sport-select' [(ngModel)]="selectedSport">
+                    <option [ngValue]='s' *ngFor='let s of allSports'>{{s.name}}</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Pol:
+            </td>
+            <td>
+                <input type="radio" name="gender" [value]='"M"' [(ngModel)]='selectedGender'> M
+                <input type="radio" name="gender" [value]='"F"' [(ngModel)]='selectedGender'> Z
             </td>
         </tr>
         <tr>
@@ -23,7 +42,7 @@
                 Datum pocetka:
             </td>
             <td>
-                <input type="text">
+                <input type="text" [(ngModel)]='selectedStartDateStr'>
             </td>
         </tr>
         <tr>
@@ -31,7 +50,7 @@
                 Datum kraja:
             </td>
             <td>
-                <input type="text">
+                <input type="text" [(ngModel)]='selectedEndsDateStr'>
             </td>
         </tr>
         <tr>
@@ -39,7 +58,22 @@
                 Lokacija:
             </td>
             <td>
-                <input type="text">
+                <input type="text" [(ngModel)]='selectedLocation'>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Delegat:
+            </td>
+            <td>
+                <select name='delegat-select' [(ngModel)]="selectedDelegat">
+                    <option [ngValue]='d' *ngFor='let d of allDelegats'>{{d.firstName}} {{d.lastName}}</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <h2>Takmicari</h2>
             </td>
         </tr>
         <tr>
@@ -52,10 +86,54 @@
         </tr>
         <tr>
             <td>
-                Delegat:
+                <button>Dodaj takmicara</button>
+            </td>
+        </tr>
+        <tr>
+            <table></table>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <h2>Format</h2>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Broj takmicara:
             </td>
             <td>
-                <select></select>
+                <input type="text">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Rezultat:
+            </td>
+            <td>
+                <select>
+                    <option>P1_T1:P2_T2</option>
+                    <option>SS,TT</option>
+                    <option>MM,SS,TT</option>
+                    <option>M,CM</option>
+                    <option>MM,CM</option>
+                    <option>HH:MM:CC</option>
+                    <option>P1_I1:P2_I2</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Grupna faza:
+            </td>
+            <td>
+                <input type='radio'> Da
+                <input type='radio'> Ne
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <button>Dodaj takmicenje</button>
             </td>
         </tr>
     </table>
