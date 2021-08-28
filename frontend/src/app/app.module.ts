@@ -18,6 +18,7 @@ import { LeadRegisterCompetitorsComponent } from './lead-register-competitors/le
 import { LeadCompetitorsOverviewComponent } from './lead-competitors-overview/lead-competitors-overview.component';
 import { OrgEditUsersComponent } from './org-edit-users/org-edit-users.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

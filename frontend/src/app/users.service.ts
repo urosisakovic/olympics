@@ -1,17 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { allUsers } from './mockDB/users';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  login(username: String, password: String): Observable<any> {
-    // TODO(urosisakovic): Add database connection
-    return of(allUsers.filter((user) => {return user.username == username && user.password == password}));
+  uri = 'http://localhost:4000';
+
+  login(username: String, password: String) {
+    const data = {
+      username: username,
+      password: password
+    };
+
+    return this.http.post(`${this.uri}/login`, data);
   }
 
 }

@@ -24,15 +24,17 @@ export class LoginComponent implements OnInit {
   loggedUser!: User;
 
   login() {
-    this.usersService.login(this.username, this.password).subscribe((user: User[]) => {
+    this.usersService.login(this.username, this.password).subscribe((user: any) => {
 
-      if (user == null || user == undefined || user.length < 1) {
+      if (user) {
+        localStorage.setItem("loggedUser", JSON.stringify(user));
+        window.location.reload();
+        
+      }
+      else {
         alert("invalid username or password");
         return;
       }
-
-      localStorage.setItem("loggedUser", JSON.stringify(user[0]));
-      window.location.reload();
-    })
+    });
   }
 }
