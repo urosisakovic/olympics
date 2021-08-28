@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CountriesService } from '../countries.service';
 import { Country } from '../data/country';
+import { PasswordService } from '../password.service';
 
 @Component({
   selector: 'app-register',
@@ -9,7 +10,7 @@ import { Country } from '../data/country';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private countriesService: CountriesService) { }
+  constructor(private countriesService: CountriesService, private passwordService: PasswordService) { }
 
   ngOnInit(): void {
     this.countriesService.getAllCountries().subscribe((data: any) => {
@@ -29,12 +30,61 @@ export class RegisterComponent implements OnInit {
   selectedType!: string;
 
   register() {
-    alert(this.selectedUsername);
-    alert(this.selectedPassword);
-    alert(this.selectedRepeatedPassword);
-    alert(this.selectedFirstName);
-    alert(this.selectedLastName);
-    alert(this.selectedEmail);
+    if (this.emptyData()) {
+      alert("Sva polja moraju biti popunjena");
+      return;
+    }
+
+    if (!(this.passwordService.isValidPassword(this.selectedPassword))) {
+      alert("Nevalidna sifra");
+      return;
+    }
+
+    if (this.selectedPassword != this.selectedRepeatedPassword) {
+      alert("Ponovljena sifra se razlikuje od originalne");
+      return;
+    }
+
+    
+    
+
+    alert("Zahtev za nalog je uspesno poslat");
+  }
+
+  emptyData() {
+    if (this.selectedUsername == undefined || this.selectedUsername == "") {
+      return true;
+    }
+
+    if (this.selectedPassword == undefined || this.selectedPassword == "") {
+      return true;
+    }
+
+    if (this.selectedRepeatedPassword == undefined || this.selectedRepeatedPassword == "") {
+      return true;
+    }
+
+    if (this.selectedFirstName == undefined || this.selectedFirstName == "") {
+      return true;
+    }
+
+    if (this.selectedLastName == undefined || this.selectedLastName == "") {
+      return true;
+    }
+
+    if (this.selectedEmail == undefined || this.selectedEmail == "") {
+      return true;
+    }
+
+    if (this.selectedCountry == undefined) {
+      return true;
+    }
+
+    if (this.selectedType == undefined || this.selectedType == "") {
+      return true;
+    }
+
+    return false;
   }
 
 }

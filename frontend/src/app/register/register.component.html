@@ -26,8 +26,8 @@
             <tr>
                 <td>Zemlja: </td>
                 <td>
-                    <select>
-                        <option *ngFor='let country of allCountries'>
+                    <select name='country-select' [(ngModel)]="selectedCountry">
+                        <option *ngFor='let country of allCountries' [ngValue]='country'>
                             {{ country.name }}
                         </option>
                     </select>
@@ -40,9 +40,9 @@
             <tr>
                 <td>Tip korisnika: </td>
                 <td>
-                    <select>
-                        <option>Delegat</option>
-                        <option>Vodja nacionalne delegacije</option>
+                    <select name='type-select' [(ngModel)]="selectedType">
+                        <option [ngValue]='"delegat"'>Delegat</option>
+                        <option [ngValue]='"lead"'>Vodja nacionalne delegacije</option>
                     </select>
                 </td>
             </tr>
