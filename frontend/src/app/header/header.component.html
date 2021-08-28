@@ -4,55 +4,40 @@
       <a routerLink='/countries'>Zemlje</a>
     </li>
     <li>
+      <a routerLink='/medals'>Medalje</a>
+    </li>
+    <li>
       <a routerLink='/participants'>Takmicari</a>
     </li>
 
-    <li *ngIf="loggedUser == null">
+    <li *ngIf="loggedUser == null" style="float:right">
       <a routerLink='/login'>Prijavi se</a>
     </li>
 
-    <li *ngIf="loggedUser != null">
-      <a routerLink='/change-password'>Promeni lozinku</a>
-    </li>
-
-    <li *ngIf="loggedUser.type === 'org'">
-      <a routerLink='/'>Organizator</a>
-    </li>
-
-    <li *ngIf="loggedUser.type === 'org'">
-      <a routerLink='/org-edit-sports'>Upravljanje sportovima</a>
-    </li>
-
-    <li *ngIf="loggedUser.type === 'org'">
-      <a routerLink='/org-edit-competitions'>Upravljanje takmicenjima</a>
-    </li>
-
-    <li *ngIf="loggedUser.type === 'org'">
-      <a routerLink='/org-edit-users'>Upravljanje nalozima</a>
-    </li>
-
-    <li *ngIf="loggedUser.type === 'org'">
-      <a routerLink='/org-record-overview'>Pregled rekorda</a>
-    </li>
-
-    <li *ngIf="loggedUser.type === 'delegat'">
-      <a routerLink='/'>Delegat</a>
-    </li>
-
-    <li *ngIf="loggedUser.type === 'lead'">
-      <a routerLink='/'>Vodja delegacije</a>
-    </li>
-
-    <li *ngIf="loggedUser.type === 'lead'">
-      <a routerLink='/lead-register-competitors'>Prijavi takmicare</a>
-    </li>
-
-    <li *ngIf="loggedUser.type === 'lead'">
-      <a routerLink='/lead-competitors-overview'>Pregled takmicara</a>
-    </li>
-
-    <li *ngIf="loggedUser != null">
-      <a routerLink='/' (click)="logout()">Odjavi se</a>
+    <li *ngIf="loggedUser != null" style="float:right; margin-right: 50px;">
+      <div class="dropdown">
+        <button class="dropbtn">Moj profil
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div *ngIf="loggedUser.type == 'org'" class="dropdown-content">
+          <a routerLink='/org-edit-sports'>Upravljanje sportovima</a>
+          <a routerLink='/org-edit-competitions'>Upravljanje takmicenjima</a>
+          <a routerLink='/org-edit-users'>Upravljanje nalozima</a>
+          <a routerLink='/org-record-overview'>Pregled rekorda</a>
+          <a routerLink='/change-password'>Promeni lozinku</a>
+          <a routerLink='/' (click)="logout()">Odjavi se</a>
+        </div>
+        <div *ngIf="loggedUser.type == 'delegat'" class="dropdown-content">
+          <a routerLink='/change-password'>Promeni lozinku</a>
+          <a routerLink='/' (click)="logout()">Odjavi se</a>
+        </div>
+        <div *ngIf="loggedUser.type == 'lead'" class="dropdown-content">
+          <a routerLink='/lead-register-competitors'>Prijavi takmicare</a>
+          <a routerLink='/lead-competitors-overview'>Pregled takmicara</a>
+          <a routerLink='/change-password'>Promeni lozinku</a>
+          <a routerLink='/' (click)="logout()">Odjavi se</a>
+        </div>
+      </div>
     </li>
   </ul>
 </nav>
