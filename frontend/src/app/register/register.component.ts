@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CountriesService } from '../countries.service';
 import { Country } from '../data/country';
 import { PasswordService } from '../password.service';
+import { UsersService } from '../users.service';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +11,10 @@ import { PasswordService } from '../password.service';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private countriesService: CountriesService, private passwordService: PasswordService) { }
+  constructor(
+    private countriesService: CountriesService,
+    private passwordService: PasswordService,
+    private userService: UsersService) { }
 
   ngOnInit(): void {
     this.countriesService.getAllCountries().subscribe((data: any) => {
@@ -45,10 +49,22 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    
-    
+    this.userService.requestRegistration(
+      this.selectedUsername,
+      this.selectedPassword,
+      this.selectedFirstName,
+      this.selectedLastName,
+      this.selectedCountry.name,
+      this.selectedEmail,
+      this.selectedType).subscribe((res: any) => {
 
-    alert("Zahtev za nalog je uspesno poslat");
+        if (res.message == "ok") {
+          alert('Uspesno poslat zahtev za registraciju');
+        }
+        else if (res.message == "username exists") {
+          alert('Username vec postoji');
+        } 
+      });
   }
 
   emptyData() {

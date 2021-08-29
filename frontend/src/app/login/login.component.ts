@@ -19,8 +19,8 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  username!: String;
-  password!: String;
+  username!: string;
+  password!: string;
   loggedUser!: User;
 
   login() {

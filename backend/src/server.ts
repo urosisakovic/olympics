@@ -34,6 +34,31 @@ router.route('/login').post((req, res) => {
     })
 });
 
+router.route('/register-request').post((req, res) => {
+    console.log("/register-request route hit");
+    let username = req.body.username;
+    let password = req.body.password;
+    let firstName = req.body.firstName;
+    let lastName = req.body.lastName;
+    let country = req.body.country;
+    let email = req.body.email;
+    let type = req.body.type;
+
+    user.findOne({'username': username}, (err, user) => {
+        if (err) {
+            console.log(err);
+        }
+        if (user) {
+            console.log('res.status(400)');
+            res.status(400).json({'message': "username exists"});
+        }
+        else {
+            console.log('res.status(200)');
+            res.status(200).json({'message': "ok"});
+        }
+    });
+});
+
 router.route('/all-countries').get((req, res) => {
     country.find({}, (err, c) => {
         if (err)

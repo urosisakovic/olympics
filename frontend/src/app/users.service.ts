@@ -12,13 +12,35 @@ export class UsersService {
 
   uri = 'http://localhost:4000';
 
-  login(username: String, password: String) {
+  login(username: string, password: string) {
     const data = {
       username: username,
       password: password
     };
 
     return this.http.post(`${this.uri}/login`, data);
+  }
+
+  requestRegistration(
+    username: string,
+    password: string,
+    firstName: string,
+    lastName: string,
+    country: string,
+    email: string,
+    type: string) {
+      const data = {
+        username: username,
+        password: password,
+        firstName: firstName,
+        lastName: lastName,
+        country: country,
+        email: email,
+        type: type
+      };
+
+      alert('post request sent');
+      return this.http.post(`${this.uri}/register-request`, data);
   }
 
 }

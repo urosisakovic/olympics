@@ -43,8 +43,8 @@ export class PasswordService {
       return false;
     }
 
-    for (let i = 0; i < password.length - 2; i++) {
-      if (this.isLetter(password.charAt(i)) && this.isLetter(password.charAt(i + 1)) && this.isLetter(password.charAt(i + 2))) {
+    for (let i = 0; i < password.length - 3; i++) {
+      if (this.isLetter(password.charAt(i)) && this.isLetter(password.charAt(i + 1)) && this.isLetter(password.charAt(i + 2)) && this.isLetter(password.charAt(i + 3))) {
         return false;
       }
     }
