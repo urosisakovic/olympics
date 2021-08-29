@@ -62,7 +62,6 @@ export class RegisterComponent implements OnInit {
       this.selectedCountry.name,
       this.selectedEmail,
       this.selectedType).subscribe((res: any) => {
-
         if (res.message == "ok") {
           alert('Uspesno poslat zahtev za registraciju');
         }

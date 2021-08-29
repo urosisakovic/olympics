@@ -42,4 +42,22 @@ export class UsersService {
       return this.http.post(`${this.uri}/register-request`, data);
   }
 
+  acceptRegistrationRequest(username: string) {
+    const data = {
+      username: username
+    };
+    return this.http.post(`${this.uri}/accept-register-request`, data);
+  }
+
+  declineRegistrationRequest(username: string) {
+    const data = {
+      username: username
+    };
+    return this.http.post(`${this.uri}/decline-register-request`, data);
+  }
+
+  getAllRegistrationRequests() {
+    return this.http.get(`${this.uri}/all-registration-requests`);
+  }
+
 }

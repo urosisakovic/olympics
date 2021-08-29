@@ -1,0 +1,9 @@
+export class RegistartionRequest {
+    username!: string;
+    password!: string;
+    firstName!: string;
+    lastName!: string;
+    country!: string;
+    email!: string;
+    type!: string;
+}

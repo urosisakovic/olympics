@@ -50,29 +50,113 @@ router.route('/register-request').post((req, res) => {
             console.log(err);
         }
         if (user) {
-            console.log('res.status(400)');
-            res.status(400).json({'message': "username exists"});
+            console.log("username exists");
+            res.status(200).json({'message': "username exists"});
         }
         else {
-            const rrData = {
-                username: username,
-                password: password,
-                firstName: firstName,
-                lastName: lastName,
-                country: country,
-                email: email,
-                type: type
-            };
 
-            let rr = new registrationRequest(rrData);
-
-            rr.save(function(err, saved) {
+            registrationRequest.findOne({'username': username}, (err, regReq) => {
                 if (err) {
                     console.log(err);
-                } else {
-                    res.status(200).json({'message': "ok"});
                 }
-            });            
+                if (regReq) {
+                    console.log("username existsc");
+                    res.status(200).json({'message': "username exists"});
+                } else {
+                    const rrData = {
+                        username: username,
+                        password: password,
+                        firstName: firstName,
+                        lastName: lastName,
+                        country: country,
+                        email: email,
+                        type: type
+                    };
+        
+                    let rr = new registrationRequest(rrData);
+        
+                    rr.save(function(err, saved) {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            res.status(200).json({'message': "ok"});
+                        }
+                    });            
+                }
+            });
+        }
+    });
+});
+
+router.route('/all-registration-requests').get((req, res) => {
+    console.log("/all-registration-requests route hit");
+    registrationRequest.find({}, (err, rr) => {
+        if (err)
+            console.log(err);
+        else {
+            res.json(rr);
+        }
+    });
+});
+
+router.route('/accept-register-request').post((req, res) => {
+    console.log("/accept-register-request route hit route hit");
+
+    const username = req.body.username;
+
+    registrationRequest.findOne({'username': username}, function (err, rr) {
+        if (err) {
+            console.log(err);
+            return res.status(200).json({'message': 'error'});
+        } else {
+            if (rr) {
+                let rrObject = rr.toObject();
+
+                const userData = {
+                    username: rrObject.username,
+                    password: rrObject.password,
+                    firstName: rrObject.firstName,
+                    lastName: rrObject.lastName,
+                    country: rrObject.country,
+                    email: rrObject.email,
+                    type: rrObject.type
+                }
+    
+                let newUser = new user(userData);
+        
+                newUser.save(function(err, saved) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        res.status(200).json({'message': "ok"});
+                    }
+                });            
+
+                console.log("Deleted: ");
+                console.log(rr);
+                rr.remove();
+                return res.status(200).json({'message': 'ok'});
+            }
+        }
+    });
+});
+
+router.route('/decline-register-request').post((req, res) => {
+    console.log("/decline-register-request route hit route hit");
+
+    const username = req.body.username;
+
+    registrationRequest.findOne({'username': username}, (err, rr) => {
+        if (err) {
+            console.log(err);
+            return res.status(200).json({'message': 'error'});
+        } else {
+            if (rr) {
+                console.log("Deleted: ");
+                console.log(rr);
+                rr.remove();
+                return res.status(200).json({'message': 'ok'});
+            }
         }
     });
 });

@@ -1,1 +1,24 @@
-<p>org-edit-users works!</p>
+<h1>Upravljanje nalozima</h1>
+
+<table>
+    <tr>
+        <td>Korisnicko ime</td>
+        <td>Zemlja</td>
+        <td>Ime</td>
+        <td>Prezime</td>
+        <td>Email</td>
+        <td>Tip naloga</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr *ngFor="let rr of allRegistrationRequests">
+        <td>{{rr.username}}</td>
+        <td>{{rr.country}}</td>
+        <td>{{rr.firstName}}</td>
+        <td>{{rr.lastName}}</td>
+        <td>{{rr.email}}</td>
+        <td>{{rr.type}}</td>
+        <td><button (click)="accept(rr.username)">Odobri</button></td>
+        <td><button (click)="decline(rr.username)">Obrisi</button></td>
+    </tr>
+</table>
