@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import mongoose, { mongo } from 'mongoose';
 import user from './model/user';
 import country from './model/country';
+import registrationRequest from './model/registrationRequest';
 
 const app = express();
 
@@ -53,8 +54,25 @@ router.route('/register-request').post((req, res) => {
             res.status(400).json({'message': "username exists"});
         }
         else {
-            console.log('res.status(200)');
-            res.status(200).json({'message': "ok"});
+            const rrData = {
+                username: username,
+                password: password,
+                firstName: firstName,
+                lastName: lastName,
+                country: country,
+                email: email,
+                type: type
+            };
+
+            let rr = new registrationRequest(rrData);
+
+            rr.save(function(err, saved) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.status(200).json({'message': "ok"});
+                }
+            });            
         }
     });
 });

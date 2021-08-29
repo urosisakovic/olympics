@@ -39,7 +39,6 @@ export class UsersService {
         type: type
       };
 
-      alert('post request sent');
       return this.http.post(`${this.uri}/register-request`, data);
   }
 
