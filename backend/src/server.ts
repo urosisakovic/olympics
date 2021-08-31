@@ -162,7 +162,21 @@ router.route('/decline-register-request').post((req, res) => {
 });
 
 router.route('/all-countries').get((req, res) => {
+    console.log("/all-countries route hit route hit");
+
     country.find({}, (err, c) => {
+        if (err)
+            console.log(err);
+        else {
+            res.json(c);
+        }
+    });
+});
+
+router.route('/all-delegats').get((req, res) => {
+    console.log("/all-delegats route hit route hit");
+
+    user.find({'type': 'delegat'}, (err, c) => {
         if (err)
             console.log(err);
         else {

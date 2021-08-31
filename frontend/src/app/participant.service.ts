@@ -1,22 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Participant } from './data/participant';
 import { User } from './data/user';
-import { Observable, of } from 'rxjs';
 import { allParticipants } from './mockDB/participants';
-import { allUsers } from './mockDB/users';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ParticipantService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  uri = 'http://localhost:4000';
 
   getAllParticipants(): Participant[] {
     return allParticipants;
   }
 
-  getAllDelegats(): Observable<User[]> {
-    return of(allUsers.filter((user) => {return user.type == 'delegat'}));
+  getAllDelegats() {
+    return this.http.get(`${this.uri}/all-delegats`); 
   }
 }
