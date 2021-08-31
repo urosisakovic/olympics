@@ -20,7 +20,9 @@ export class ParticipantsComponent implements OnInit {
     private sportService: SportService) { }
 
   ngOnInit(): void {
-    this.allParticipants = this.participantService.getAllParticipants();
+    this.participantService.getAllParticipants().subscribe((data: any) => {
+      this.allParticipants = data;
+    });
     this.countriesService.getAllCountries().subscribe((data: any) => {
       this.allCountries = data;
     });

@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Participant } from './data/participant';
-import { User } from './data/user';
-import { allParticipants } from './mockDB/participants';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -13,11 +11,11 @@ export class ParticipantService {
 
   uri = 'http://localhost:4000';
 
-  getAllParticipants(): Participant[] {
-    return allParticipants;
+  getAllParticipants() {
+    return this.http.get(`${this.uri}/all-participants`);
   }
 
   getAllDelegats() {
-    return this.http.get(`${this.uri}/all-delegats`); 
+    return this.http.get(`${this.uri}/all-delegats`);
   }
 }
