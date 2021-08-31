@@ -26,7 +26,9 @@ export class ParticipantsComponent implements OnInit {
     this.countriesService.getAllCountries().subscribe((data: any) => {
       this.allCountries = data;
     });
-    this.allSports = this.sportService.getAllSports();
+    this.sportService.getAllSports().subscribe((data: any) => {
+      this.allSports = data;
+    });
   }
 
   allParticipants!: Participant[];

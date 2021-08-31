@@ -17,7 +17,9 @@ export class OrgEditCompetitionsComponent implements OnInit {
     private sportService: SportService) { }
 
   ngOnInit(): void {
-    this.allSports = this.sportService.getAllSports();
+    this.sportService.getAllSports().subscribe((data: any) => {
+      this.allSports = data;
+    });
     this.participantService.getAllDelegats().subscribe((data: any) => {
       this.allDelegats = data;
       this.isLoaded = true;

@@ -6,6 +6,7 @@ import user from './model/user';
 import country from './model/country';
 import registrationRequest from './model/registrationRequest';
 import participant from './model/participant';
+import sport from './model/sport';
 
 const app = express();
 
@@ -190,6 +191,18 @@ router.route('/all-participants').get((req, res) => {
     console.log("/all-participants route hit route hit");
 
     participant.find({}, (err, c) => {
+        if (err)
+            console.log(err);
+        else {
+            res.json(c);
+        }
+    });
+});
+
+router.route('/all-sports').get((req, res) => {
+    console.log("/all-sports route hit route hit");
+
+    sport.find({}, (err, c) => {
         if (err)
             console.log(err);
         else {

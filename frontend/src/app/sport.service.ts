@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Sport } from './data/sport';
-import { allSports } from './mockDB/sport';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SportService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getAllSports(): Sport[] {
-    return allSports;
+  uri = 'http://localhost:4000';
+
+  getAllSports() {
+    return this.http.get(`${this.uri}/all-sports`);
   }
 }
