@@ -12,7 +12,9 @@ export class OrgRecordOverviewComponent implements OnInit {
   constructor(private recordsService: RecordsService) { }
 
   ngOnInit(): void {
-    this.allRecords = this.recordsService.getAllRecords();
+    this.recordsService.getAllRecords().subscribe((data: any) => {
+      this.allRecords = data;
+    });
   }
 
   allRecords!: Record[];

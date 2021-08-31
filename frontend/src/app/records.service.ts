@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Record } from './data/record';
-import { allRecords } from './mockDB/records';
+import { HttpClient } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecordsService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getAllRecords(): Record[] {
-    return allRecords;
+  uri = 'http://localhost:4000';
+
+  getAllRecords() {
+    return this.http.get(`${this.uri}/all-records`);
   }
 }

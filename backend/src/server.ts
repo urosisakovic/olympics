@@ -7,6 +7,7 @@ import country from './model/country';
 import registrationRequest from './model/registrationRequest';
 import participant from './model/participant';
 import sport from './model/sport';
+import record from './model/record';
 
 const app = express();
 
@@ -211,6 +212,17 @@ router.route('/all-sports').get((req, res) => {
     });
 });
 
+router.route('/all-records').get((req, res) => {
+    console.log("/all-records route hit route hit");
+
+    record.find({}, (err, c) => {
+        if (err)
+            console.log(err);
+        else {
+            res.json(c);
+        }
+    });
+});
 
 app.use('/', router);
 app.listen(4000, () => console.log(`Express server running on port 4000`));
