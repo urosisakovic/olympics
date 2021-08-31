@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CountriesService } from '../countries.service';
 import { Country } from '../data/country';
 import { PasswordService } from '../password.service';
@@ -14,7 +15,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private countriesService: CountriesService,
     private passwordService: PasswordService,
-    private userService: UsersService) { }
+    private userService: UsersService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.countriesService.getAllCountries().subscribe((data: any) => {
@@ -64,6 +66,7 @@ export class RegisterComponent implements OnInit {
       this.selectedType).subscribe((res: any) => {
         if (res.message == "ok") {
           alert('Uspesno poslat zahtev za registraciju');
+          this.router.navigate(['/']);
         }
         else if (res.message == "username exists") {
           alert('Username vec postoji');

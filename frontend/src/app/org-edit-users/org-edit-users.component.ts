@@ -42,7 +42,12 @@ export class OrgEditUsersComponent implements OnInit {
   }
 
   removeFromTable(username: string) {
-
+    for (let i = 0; i < this.allRegistrationRequests.length; i++) {
+      if (this.allRegistrationRequests[i].username == username) {
+        this.allRegistrationRequests.splice(i, 1);
+        return;
+      }
+    }
   }
 
 }
