@@ -4,22 +4,44 @@
     <table>
         <tr>
             <td>Sport:</td>
-        </tr>
-        <tr>
-            <td>Disciplina:</td>
-        </tr>
-        <tr>
-            <td>Ime:</td>
-        </tr>
-        <tr>
-            <td>Prezime:</td>
-        </tr>
-        <tr>
-            <td>Pol:</td>
+            <td>
+                <select name='sport-select' [(ngModel)]="selectedSport" (change)="onSportSelectChange()">
+                    <option [ngValue]='s' *ngFor='let s of allSports'>{{s}}</option>
+                </select>
+            </td>
         </tr>
         <tr>
             <td>
-                <button>Prijavi takmicara</button>
+                Disciplina:
+            </td>
+            <td>
+                <select name='discipline-select' [(ngModel)]="selectedDiscipline" [disabled]="relatedDisciplines.length <= 1">
+                    <option [ngValue]='d' *ngFor='let d of relatedDisciplines'>{{d}}</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Ime:</td>
+            <td>
+                <input type="text" name="first-name-input" [(ngModel)]="selectedFirstName">
+            </td>
+        </tr>
+        <tr>
+            <td>Prezime:</td>
+            <td>
+                <input type="text" name='last-name-input' [(ngModel)]="selectedLastName">
+            </td>
+        </tr>
+        <tr>
+            <td>Pol:</td>
+            <td>
+                <input type="radio" name="gender-select" [value]='"M"' [(ngModel)]='selectedGender'> M
+                <input type="radio" name="gender-select" [value]='"F"' [(ngModel)]='selectedGender'> Z
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button (click)="addPariticipant()">Prijavi takmicara</button>
             </td>
         </tr>
     </table>

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Participant } from './data/participant';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -17,5 +16,24 @@ export class ParticipantService {
 
   getAllDelegats() {
     return this.http.get(`${this.uri}/all-delegats`);
+  }
+
+  addParticipant(
+    country: string,
+    name: string,
+    gender: string,
+    sport: string,
+    discipline: string
+  ) {
+    const data = {
+      country: country,
+      name: name,
+      gender: gender,
+      sport: sport,
+      discipline: discipline
+    };
+
+    alert("Sending post request...");
+    return this.http.post(`${this.uri}/add-participants`, data);
   }
 }
