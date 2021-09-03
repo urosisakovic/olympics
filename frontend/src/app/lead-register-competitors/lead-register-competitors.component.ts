@@ -74,7 +74,6 @@ export class LeadRegisterCompetitorsComponent implements OnInit {
     }
 
     this.selectedDiscipline = this.relatedDisciplines[0];
-    alert('this.selectedDiscipline ' + this.selectedDiscipline);
   }
 
   addPariticipant() {
@@ -89,7 +88,14 @@ export class LeadRegisterCompetitorsComponent implements OnInit {
       this.selectedGender,
       this.selectedSport,
       this.selectedDiscipline).subscribe((data: any) => {
-
+        if (data.message == "other sport") {
+          alert("Takmicar je vec prijavljen za drugi sport!");
+        } else if (data.message == "already added") {
+          alert("Takmicar je vec dodat za datu disciplinu!");
+        } else if (data.message == "ok") {
+          alert("Uspesno dodat takmicar u datoj disciplini!");
+          window.location.reload();
+        }
       });
   }
 

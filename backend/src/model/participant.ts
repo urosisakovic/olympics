@@ -22,11 +22,11 @@ let Participant = new Schema({
         type: Number
     },
     sport: {
-        String
+        type: String
     },
-    discipline: {
-        String
-    }
+    disciplines: [{
+        type: String
+    }]
 });
 
 export default mongoose.model('Participant', Participant, 'participants');

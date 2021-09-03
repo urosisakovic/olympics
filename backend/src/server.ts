@@ -224,5 +224,68 @@ router.route('/all-records').get((req, res) => {
     });
 });
 
+router.route('/add-participants').post((req, res) => {
+    console.log("/add-participants route hit");
+    let country = req.body.country;
+    let name = req.body.name;
+    let gender = req.body.gender;
+    let sport = req.body.sport;
+    let discipline = req.body.discipline;
+
+    console.log('Sport: ' + sport);
+
+    participant.findOne({'name': name, 'country': country, 'gender': gender}, (err, par) => {
+        if (err) {
+            console.log(err);
+        }
+        if (par) {
+            console.log('Participant exists. Appending discipline...');
+
+            if (par.toObject().sport != sport) {
+                res.status(200).json({'message': "other sport"});
+                console.log("Wrong sport. Aborting...");
+            } else {
+
+                if (par.toObject().disciplines.includes(discipline)) {
+                    res.status(200).json({'message': "already added"});
+                    console.log("Already added. Aborting...");
+                } else {
+                    participant.collection.updateOne(
+                        {'name': name, 'country': country, 'gender': gender},
+                        {$push: {"disciplines": discipline}});
+                    console.log("Succeess! Appended another discipline...");
+                    res.status(200).json({'message': "ok"});
+                }
+            }
+        }
+        else {
+            console.log('Participant does NOT exists. Adding participant...');
+
+            const participantData = {
+                'country': country,
+                'name': name,
+                'gender': gender,
+                'sport': sport,
+                'goldMedalsWon': 0,
+                'silverMedalsWon': 0,
+                'bronzeMedalsWon': 0,
+                'disciplines': [discipline]
+            };
+
+            console.log(participantData);
+
+            let newParticipant = new participant(participantData);
+        
+            newParticipant.save(function(err, saved) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.status(200).json({'message': "ok"});
+                }
+            });   
+        }
+    });
+});
+
 app.use('/', router);
 app.listen(4000, () => console.log(`Express server running on port 4000`));
