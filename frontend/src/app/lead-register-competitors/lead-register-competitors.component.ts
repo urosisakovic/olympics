@@ -68,6 +68,8 @@ export class LeadRegisterCompetitorsComponent implements OnInit {
   selectedGender!: string;
   fileName!: string;
 
+  selectedFile!: File;
+
   isJSONFile(filepath: string) {
     let allowedExtenstion = ".json";
     if (filepath.substr(filepath.length - allowedExtenstion.length, allowedExtenstion.length).toLowerCase() == allowedExtenstion.toLowerCase()) {
@@ -77,18 +79,17 @@ export class LeadRegisterCompetitorsComponent implements OnInit {
     return false;
   }
 
-  onSubmit(event: any) {
-    if (event.target.files && event.target.files.length) {
-      this.fileName = event.target.files[0].name;
+  onSubmit() {
+    if (this.selectedFile != undefined && this.selectedFile != null) {
+      this.fileName = this.selectedFile.name;
       
       if (!this.isJSONFile(this.fileName)) {
         alert("Morate uneti JSON fajl!");
         return;
       }
 
-      let selectedFile = event.target.files[0];
       const fileReader = new FileReader();
-      fileReader.readAsText( selectedFile, "UTF-8");
+      fileReader.readAsText(this.selectedFile, "UTF-8");
       fileReader.onload = () => {
         if (fileReader.result) {
           console.log(JSON.parse(String(fileReader.result)));
@@ -100,6 +101,12 @@ export class LeadRegisterCompetitorsComponent implements OnInit {
 
     } else {
       alert("Morate izabrati fajl");
+    }
+  }
+
+  public onFileChange(event: any) {
+    if (event.target.files && event.target.files.length) {
+      this.selectedFile = event.target.files[0];
     }
   }
 

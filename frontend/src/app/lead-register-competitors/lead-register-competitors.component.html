@@ -49,8 +49,8 @@
 
 <div>
 Ucitaj iz fajla
-<form [formGroup] = "formGroup" (ngSubmit)="onSubmit($event)">
-    <input type="file" />
+<form [formGroup] = "formGroup" (ngSubmit)="onSubmit()">
+    <input type="file" (change)="onFileChange($event)" />
     <input type="submit" value="Ubaci igrace" />
 </form>
 
