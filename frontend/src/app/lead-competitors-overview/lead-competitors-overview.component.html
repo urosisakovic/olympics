@@ -1,1 +1,47 @@
-<p>lead-competitors-overview works!</p>
+<h1>Pregled takmicara</h1>
+
+<p>Ukupan broj clanova tima: {{participantCount}}</p>
+
+<h1>Broj prijavljenih takmicara po sportovima: </h1>
+<table>
+    <tr *ngFor="let s of allSports; let i = index;">
+        <td *ngIf="competitorsPerSport[i] > 0">
+            {{s}}: {{competitorsPerSport[i]}}
+        </td>
+    </tr>
+</table>
+
+<h1>Pregled takmicara po sportovima: </h1>
+<form>
+    <table>
+        <tr>
+            <td>Sport:</td>
+            <td>
+                <select name='sport-select' [(ngModel)]="selectedSport" (change)="onSportSelectChange()">
+                    <option [ngValue]='s' *ngFor='let s of allSports'>{{s}}</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Disciplina:
+            </td>
+            <td>
+                <select name='discipline-select' [(ngModel)]="selectedDiscipline" [disabled]="relatedDisciplines.length <= 1">
+                    <option [ngValue]='d' *ngFor='let d of relatedDisciplines'>{{d}}</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button (click)="refreshParticipants()">Prikazi</button>
+            </td>
+        </tr>
+    </table>
+
+    <table>
+        <tr *ngFor="let rp of resultParticipants">
+            <td>{{rp.name}}</td>
+        </tr>
+    </table>
+</form>
