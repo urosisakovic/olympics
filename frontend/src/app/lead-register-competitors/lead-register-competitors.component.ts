@@ -68,24 +68,39 @@ export class LeadRegisterCompetitorsComponent implements OnInit {
   selectedGender!: string;
   fileName!: string;
 
-  public onFileChange(event: any) {
-    const reader = new FileReader();
- 
-    if (event.target.files && event.target.files.length) {
-      this.fileName = event.target.files[0].name;
-      const [file] = event.target.files;
-      reader.readAsDataURL(file);
-     
-      reader.onload = () => {
-        this.formGroup.patchValue({
-          file: reader.result
-        });
-      };
+  isJSONFile(filepath: string) {
+    let allowedExtenstion = ".json";
+    if (filepath.substr(filepath.length - allowedExtenstion.length, allowedExtenstion.length).toLowerCase() == allowedExtenstion.toLowerCase()) {
+      return true;
     }
+
+    return false;
   }
 
-  onSubmit() {
+  onSubmit(event: any) {
+    if (event.target.files && event.target.files.length) {
+      this.fileName = event.target.files[0].name;
+      
+      if (!this.isJSONFile(this.fileName)) {
+        alert("Morate uneti JSON fajl!");
+        return;
+      }
 
+      let selectedFile = event.target.files[0];
+      const fileReader = new FileReader();
+      fileReader.readAsText( selectedFile, "UTF-8");
+      fileReader.onload = () => {
+        if (fileReader.result) {
+          console.log(JSON.parse(String(fileReader.result)));
+        }
+      }
+      fileReader.onerror = (error) => {
+        console.log(error);
+      }
+
+    } else {
+      alert("Morate izabrati fajl");
+    }
   }
 
   onSportSelectChange() {
