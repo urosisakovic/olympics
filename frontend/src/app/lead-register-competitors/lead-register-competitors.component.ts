@@ -4,6 +4,7 @@ import { User } from '../data/user';
 import { ParticipantService } from '../participant.service';
 import { SportService } from '../sport.service';
 import { Router } from '@angular/router';
+import { FormBuilder, Validators } from '@angular/forms';
 
 
 @Component({
@@ -16,7 +17,8 @@ export class LeadRegisterCompetitorsComponent implements OnInit {
   constructor(
     private sportService: SportService,
     private participantService: ParticipantService,
-    private router: Router) { }
+    private router: Router,
+    private fb: FormBuilder) { }
 
   ngOnInit(): void {
     if (localStorage.getItem("loggedUser") != null && localStorage.getItem("loggedUser") != undefined) {
@@ -48,6 +50,10 @@ export class LeadRegisterCompetitorsComponent implements OnInit {
     this.selectedDiscipline = "";
   }
 
+  public formGroup = this.fb.group({
+    file: [null, Validators.required]
+  });
+
   loggedUser!: User;
 
   allSports!: string[];
@@ -60,6 +66,27 @@ export class LeadRegisterCompetitorsComponent implements OnInit {
   selectedFirstName!: string;
   selectedLastName!: string;
   selectedGender!: string;
+  fileName!: string;
+
+  public onFileChange(event: any) {
+    const reader = new FileReader();
+ 
+    if (event.target.files && event.target.files.length) {
+      this.fileName = event.target.files[0].name;
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+     
+      reader.onload = () => {
+        this.formGroup.patchValue({
+          file: reader.result
+        });
+      };
+    }
+  }
+
+  onSubmit() {
+
+  }
 
   onSportSelectChange() {
     if (this.selectedSport == null || this.selectedSport == undefined) {
