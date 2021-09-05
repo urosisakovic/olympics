@@ -1,26 +1,14 @@
-<div>
-    <h1>Prijavi se</h1>
+<h1>Prijavi se</h1>
 
-    <form>
-        <table>
-            <tr>
-                <td>Korisnicko ime: </td>
-                <td><input type="text" name="username" [(ngModel)]='username'></td>
-            </tr>
-            <tr>
-                <td>Lozinka: </td>
-                <td><input type="password" name="password" [(ngModel)]='password'></td>
-            </tr>
-            <tr>
-                <td>
-                    <button (click)='login()'>Prijavi se</button>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Nemas nalog? <a routerLink="/register">Registruj se.</a>
-                </td>
-            </tr>
-        </table>
-    </form>
-</div>
+<form>
+    <div class="form-group">
+      <label for="first-last-name">Korisnicko ime</label>
+      <input type="text" class="form-control" name='first-last-name' [(ngModel)]='username'>
+    </div>
+    <div class="form-group">
+        <label for="password">Lozinka</label>
+        <input type="password" class="form-control" name='password' [(ngModel)]='password'>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="login()">Prijavi se</button><br/>
+    <small id="emailHelp" class="form-text text-muted">Nemas nalog? <a routerLink="/register">Registruj se.</a></small>
+</form>
