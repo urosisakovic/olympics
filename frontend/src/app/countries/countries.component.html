@@ -1,16 +1,19 @@
 <div>
     <h1>Zemlje</h1>
-    <table>
-        <tr>
-            <td>Zastava</td>
-            <td>Naziv zemlje</td>
-            <td>Broj sportista</td>
-        </tr>
-        <tr *ngFor='let country of allCountries'>
-            <td><img src="{{'/assets/flags/' + country.flag}}"></td>
-            <td>{{country.flag}}</td>
-            <td>{{country.name}}</td>
-            <td>{{country.participantCount}}</td>
-        </tr>
+    <table class="table table-striped">
+        <thead class='table-dark'>
+            <tr>
+                <td>Zastava</td>
+                <td>Naziv zemlje</td>
+                <td>Broj sportista</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let country of allCountries'>
+                <td><img src="{{'/assets/flags/' + country.flag}}" class="flag-image"></td>
+                <td>{{country.name}}</td>
+                <td>{{country.participantCount}}</td>
+            </tr>
+        </tbody>
     </table>
 </div>

@@ -1,56 +1,52 @@
-<div>
-    <h1>Takmicari</h1>
+<h1>Takmicari</h1>
 
-    <form>
-        <table>
-            <tr>
-                <td>Ime i prezime:</td>
-                <td><input type="text" name='first-last-name' [(ngModel)]='selectedName'></td>
-            </tr>
-            <tr>
-                <td>Zemlja:</td>
-                <td>
-                    <select name='country-select' [(ngModel)]="selectedCountry">
-                        <option [value]='undefined'>Sve zemlje</option>
-                        <option [ngValue]='c' *ngFor='let c of allCountries'>{{c.name}}</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Sport:</td>
-                <td>
-                    <select name='sport-select' [(ngModel)]="selectedSport">
-                        <option [value]='undefined'>Svi sportovi</option>
-                        <option [ngValue]='s' *ngFor='let s of allSports'>{{s.name}}</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Disciplina:</td>
-                <td>
-                    <select>
-                        <option>Sve sportske discipline</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Pol</td>
-                <td>
-                    <input type="radio" name="gender" [value]='"M"' [(ngModel)]='selectedGender'/> M
-                </td>
-                <td>
-                    <input type="radio" name="gender" [value]='"F"' [(ngModel)]='selectedGender'/> Z
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="checkbox" name="only-medal-winners" [(ngModel)]='selectedOnlyMedalWinners'> samo osvajaci medalja
-                </td>
-            </tr>
-            <tr>
-                <button (click)='searchParticipants()'>Pretrazi</button>
-            </tr>
+<form>
+    <div class="form-group">
+      <label for="first-last-name">Ime i prezime</label>
+      <input type="text" class="form-control" name='first-last-name' [(ngModel)]='selectedName'>
+    </div>
+    <div class="form-group">
+      <label for="country-select">Zemlja</label>
+      <select class="form-control" name='country-select' [(ngModel)]="selectedCountry">
+        <option [value]='undefined'>Sve zemlje</option>
+        <option [ngValue]='c' *ngFor='let c of allCountries'>{{c.name}}</option>
+    </select>
+    </div>
+    <div class="form-group">
+        <label for="sport-select">Sport</label>
+        <select class="form-control" name='sport-select' [(ngModel)]="selectedSport">
+            <option [value]='undefined'>Svi sportovi</option>
+            <option [ngValue]='s' *ngFor='let s of allSports'>{{s.name}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="discipline-select">Disciplina</label>
+        <select class="form-control" name='discipline-select' [(ngModel)]="selectedDiscipline">
+            <option [value]='undefined'>Sve discipline</option>
+            <option [ngValue]='s' *ngFor='let s of allSports'>{{s.name}}</option>
+        </select>
+    </div>
 
-        </table>
-    </form>
-</div>
+    <div class="form-group">
+        <label for="gender-radio">Pol</label>
+        <div class="form-check" name="gender-radio">
+            <input class="form-check-input" type="radio" name="gender" [value]='"M"' [(ngModel)]='selectedGender'>
+            <label class="form-check-label" for="exampleRadios1">
+            Muski
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="gender" [value]='"M"' [(ngModel)]='selectedGender'>
+            <label class="form-check-label" for="exampleRadios2">
+            Zenski
+            </label>
+        </div>
+    </div>
+
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" name="only-medal-winners" [(ngModel)]='selectedOnlyMedalWinners'>
+        <label class="form-check-label" for="exampleCheck1">Samo osvajaci medalja</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary" (click)="searchParticipants()">Pretrazi</button>
+  </form>

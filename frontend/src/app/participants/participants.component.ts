@@ -65,8 +65,6 @@ export class ParticipantsComponent implements OnInit {
 
     if (this.selectedOnlyMedalWinners == undefined)
       alert("Svi")
-    alert(this.selectedOnlyMedalWinners);
-    console.log(this.selectedName);
   }
 
 }
