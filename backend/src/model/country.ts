@@ -15,6 +15,9 @@ let Country = new Schema({
     goldMedalsWon: {
         type: Number
     },
+    silverMedalsWon: {
+        type: Number
+    },
     bronzeMedalsWon: {
         type: Number
     }

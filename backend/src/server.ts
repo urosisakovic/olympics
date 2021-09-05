@@ -171,7 +171,33 @@ router.route('/all-countries').get((req, res) => {
         if (err)
             console.log(err);
         else {
-            res.json(c);
+            participant.find({}, (err, p) => {
+                if (err)
+                    console.log(err);
+
+                let countries = [];
+
+                for (let j = 0; j < c.length; j++) {
+                    let country = c[j].toObject();
+                    country.participantCount = 0;
+                    country.goldMedalsWon = 0;
+                    country.silverMedalsWon = 0;
+                    country.bronzeMedalsWon = 0;
+
+                    for (let i = 0; i < p.length; i++) {
+                        let par = p[i].toObject();
+                        if (country.name == par.country) {
+                            country.participantCount++;
+                            country.goldMedalsWon += par.goldMedalsWon;
+                            country.silverMedalsWon += par.silverMedalsWon;
+                            country.bronzeMedalsWon += par.bronzeMedalsWon;
+                        }
+                    }
+
+                    countries.push(country);
+                }
+                res.json(countries);
+            });
         }
     });
 });

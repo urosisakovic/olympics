@@ -43,10 +43,12 @@
         </div>
     </div>
 
-    <div class="form-check">
+    <div class="form-check form-group">
         <input type="checkbox" class="form-check-input" name="only-medal-winners" [(ngModel)]='selectedOnlyMedalWinners'>
         <label class="form-check-label" for="exampleCheck1">Samo osvajaci medalja</label>
     </div>
 
-    <button type="submit" class="btn btn-primary" (click)="searchParticipants()">Pretrazi</button>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" (click)="searchParticipants()">Pretrazi</button>
+    </div>
   </form>
