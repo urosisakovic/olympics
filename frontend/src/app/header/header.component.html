@@ -36,10 +36,10 @@
           <li><a class="dropdown-item nav-link" routerLink='/' (click)="logout()">Odjavi se</a></li>
         </ul>
         <ul *ngIf="loggedUser.type == 'lead'" class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <li><a routerLink='/lead-register-competitors'>Prijavi takmicare</a></li>
-          <li><a routerLink='/lead-competitors-overview'>Pregled takmicara</a></li>
-          <li><a routerLink='/change-password'>Promeni lozinku</a></li>
-          <li><a routerLink='/' (click)="logout()">Odjavi se</a></li>
+          <li><a class="dropdown-item nav-link" routerLink='/lead-register-competitors'>Prijavi takmicare</a></li>
+          <li><a class="dropdown-item nav-link" routerLink='/lead-competitors-overview'>Pregled takmicara</a></li>
+          <li><a class="dropdown-item nav-link" routerLink='/change-password'>Promeni lozinku</a></li>
+          <li><a class="dropdown-item nav-link" routerLink='/' (click)="logout()">Odjavi se</a></li>
         </ul>
       </li>
     </ul>
