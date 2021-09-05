@@ -15,6 +15,7 @@ export class CountriesComponent implements OnInit {
     this.countriesService.getAllCountries().subscribe((data: any) => {
       this.allCountries = data;
     });
+    for (let i = 0; i < 10000; i++) { let j = i * i - i; console.log(j); }
   }
 
   allCountries!: Country[];

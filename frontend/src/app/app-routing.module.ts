@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { CountriesComponent } from './countries/countries.component';
+import { HomeComponent } from './home/home.component';
 import { LeadCompetitorsOverviewComponent } from './lead-competitors-overview/lead-competitors-overview.component';
 import { LeadRegisterCompetitorsComponent } from './lead-register-competitors/lead-register-competitors.component';
 import { LoginComponent } from './login/login.component';
@@ -14,6 +15,7 @@ import { ParticipantsComponent } from './participants/participants.component';
 import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
+  {path: '', component: HomeComponent},
   {path: 'countries', component: CountriesComponent},
   {path: 'medals', component: MedalsComponent},
   {path: 'participants', component: ParticipantsComponent},

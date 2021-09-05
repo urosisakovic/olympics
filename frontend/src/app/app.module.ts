@@ -19,6 +19,7 @@ import { LeadCompetitorsOverviewComponent } from './lead-competitors-overview/le
 import { OrgEditUsersComponent } from './org-edit-users/org-edit-users.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { HttpClientModule } from '@angular/common/http';
     LeadRegisterCompetitorsComponent,
     LeadCompetitorsOverviewComponent,
     OrgEditUsersComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
