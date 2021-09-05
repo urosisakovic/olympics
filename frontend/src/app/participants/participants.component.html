@@ -6,11 +6,11 @@
       <input type="text" class="form-control" name='first-last-name' [(ngModel)]='selectedName'>
     </div>
     <div class="form-group">
-      <label for="country-select">Zemlja</label>
-      <select class="form-control" name='country-select' [(ngModel)]="selectedCountry">
-        <option [value]='undefined'>Sve zemlje</option>
-        <option [ngValue]='c' *ngFor='let c of allCountries'>{{c.name}}</option>
-    </select>
+        <label for="country-select">Zemlja</label>
+        <select class="form-control" name='country-select' [(ngModel)]="selectedCountry">
+            <option [value]='undefined'>Sve zemlje</option>
+            <option [ngValue]='c' *ngFor='let c of allCountries'>{{c.name}}</option>
+        </select>
     </div>
     <div class="form-group">
         <label for="sport-select">Sport</label>

@@ -1,78 +1,28 @@
 <h1>Dodaj sport</h1>
-<form>
-    <table>
-        <tr>
-            <td>
-                Ime sporta:
-            </td>
-            <td>
-                <input type="text" name="sport" [(ngModel)]='selectedSportName'>
-            </td>
-        </tr>
-        <tr>
-            <td>Ime sportske discipline:</td>
-            <td>
-                <input type="text" name="sport-discipline" [(ngModel)]='selectedDisciplineName'>
-            </td>
-        </tr>
-        <tr>
-            <td>Vrsta sporta:</td>
-            <td>
-                <select name="type-select-group" [(ngModel)]="selectedType">
-                    <option [value]="'team'">Ekipni</option>
-                    <option [value]="'individual'">Individualni</option>
-                </select>
-            </td>
-        </tr>
-        <tr *ngIf="selectedType == 'team'">
-            <td>
-                Minimalni broj igraca:
-            </td>
-            <td>
-                <input type="number" name='min-players-select' [(ngModel)]="selectedMinPlayers">
-            </td>
-        </tr>
-        <tr *ngIf="selectedType == 'team'">
-            <td>
-                Maksimalni broj igraca:
-            </td>
-            <td>
-                <input type="number"  name='max-players-select' [(ngModel)]="selectedMaxPlayers">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <button (click)="addSport()">Dodaj sport</button>
-            </td>
-        </tr>
-    </table>
-</form>
-
-
-<h1>Izbrisi sport</h1>
 
 <form>
-    <table>
-        <tr>
-            <td>
-                Sport:
-            </td>
-            <td>
-                <select></select>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Disciplina:
-            </td>
-            <td>
-                <select></select>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <button>Izbrisi sport</button>
-            </td>
-        </tr>
-    </table>
+    <div class="form-group">
+      <label for="sport">Naziv sporta</label>
+      <input type="text" class="form-control" name="sport" [(ngModel)]='selectedSportName'>
+    </div>
+    <div class="form-group">
+        <label for="discipline">Naziv sportske discipline</label>
+        <input type="text" class="form-control" name="discipline" [(ngModel)]='selectedDisciplineName'>
+    </div>
+    <div class="form-group">
+        <label for="type-select-group">Vrsta sporta</label>
+        <select class="form-control" name="type-select-group" [(ngModel)]="selectedType">
+            <option [value]="'team'">Ekipni</option>
+            <option [value]="'individual'">Individualni</option>
+        </select>
+    </div>
+    <div *ngIf="selectedType == 'team'" class="form-group">
+        <label for="min-players-select">Minimalni broj igraca</label>
+        <input  class="form-control" type="number" name='min-players-select' [(ngModel)]="selectedMinPlayers">
+    </div>
+    <div *ngIf="selectedType == 'team'" class="form-group">
+        <label for="min-players-select">Maksimalni broj igraca</label>
+        <input  class="form-control" type="number" name='max-players-select' [(ngModel)]="selectedMaxPlayers">
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="addSport()">Dodaj sport</button>
 </form>
