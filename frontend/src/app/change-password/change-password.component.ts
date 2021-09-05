@@ -12,4 +12,12 @@ export class ChangePasswordComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  oldPassword!: string;
+  newPassword!: string;
+  repeatNewPassword!: string;
+
+  changePassword() {
+    
+  }
+
 }
