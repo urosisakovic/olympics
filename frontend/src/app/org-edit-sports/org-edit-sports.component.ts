@@ -45,6 +45,7 @@ export class OrgEditSportsComponent implements OnInit {
       maxPlayerPlaceholder).subscribe((data: any) => {
         if (data.message == "ok") {
           alert("Uspesno dodat sport");
+          window.location.reload();
         } else {
           alert("Doslo je do greske prilikom dodavanja sporta!");
         }

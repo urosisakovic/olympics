@@ -7,6 +7,7 @@
             <td>Broj sportista</td>
         </tr>
         <tr *ngFor='let country of allCountries'>
+            <td><img src="{{'/assets/flags/' + country.flag}}"></td>
             <td>{{country.flag}}</td>
             <td>{{country.name}}</td>
             <td>{{country.participantCount}}</td>
