@@ -6,13 +6,13 @@
                 Ime sporta:
             </td>
             <td>
-                <input type="text" name="sport">
+                <input type="text" name="sport" [(ngModel)]='selectedSportName'>
             </td>
         </tr>
         <tr>
             <td>Ime sportske discipline:</td>
             <td>
-                <input type="text" name="sport-discipline">
+                <input type="text" name="sport-discipline" [(ngModel)]='selectedDisciplineName'>
             </td>
         </tr>
         <tr>
@@ -29,7 +29,7 @@
                 Minimalni broj igraca:
             </td>
             <td>
-                <input type="number">
+                <input type="number" name='min-players-select' [(ngModel)]="selectedMinPlayers">
             </td>
         </tr>
         <tr *ngIf="selectedType == 'team'">
@@ -37,7 +37,7 @@
                 Maksimalni broj igraca:
             </td>
             <td>
-                <input type="number">
+                <input type="number"  name='max-players-select' [(ngModel)]="selectedMaxPlayers">
             </td>
         </tr>
         <tr>

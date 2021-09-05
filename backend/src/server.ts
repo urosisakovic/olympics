@@ -287,5 +287,45 @@ router.route('/add-participants').post((req, res) => {
     });
 });
 
+router.route('/add-sport-with-discipline').post((req, res) => {
+    console.log("//add-sport-with-discipline route hit");
+
+    let sportName = req.body.sport;
+    let discipline = req.body.discipline;
+    let type = req.body.type;
+    let minPlayers = req.body.minPlayers;
+    let maxPlayers = req.body.maxPlayers;
+
+    sport.findOne({'name': sportName, 'discipline': discipline}, (err, foundSport) => {
+        if (err) {
+            console.log(err);
+        }
+
+        if (foundSport) {
+            console.log("Sport and discipline pair already exist. Aborting...");
+            res.status(200).json({'message': "already exists"});
+        }
+
+        const sportData = {
+            'name': sportName,
+            'discipline': discipline,
+            'type': type,
+            'minPlayers': minPlayers,
+            'maxPlayers': maxPlayers
+        };
+
+        let newSport = new sport(sportData);
+    
+        newSport.save(function(err, saved) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.status(200).json({'message': "ok"});
+            }
+        });   
+    });
+});
+
+
 app.use('/', router);
 app.listen(4000, () => console.log(`Express server running on port 4000`));
