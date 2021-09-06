@@ -143,13 +143,13 @@ export class LeadRegisterCompetitorsComponent implements OnInit {
       this.selectedDiscipline).subscribe((data: any) => {
         if (data.message == "other sport") {
           this.successMessage = "";
-          this.errorMessage = "Takmicar je vec prijavljen za drugi sport.";
+          this.errorMessage = "Takmičar je vec prijavljen za drugi sport.";
         } else if (data.message == "already added") {
           this.successMessage = "";
-          this.errorMessage = "Takmicar je vec dodat za datu disciplinu.";
+          this.errorMessage = "Takmičar je vec dodat za datu disciplinu.";
         } else if (data.message == "ok") {
           this.errorMessage = "";
-          this.successMessage = "Uspesno dodat takmicar u datoj disciplini.";
+          this.successMessage = "Uspesno dodat takmičar u datoj disciplini.";
           this.selectedFirstName = "";
           this.selectedLastName = "";
         }

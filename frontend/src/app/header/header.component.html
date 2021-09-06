@@ -25,7 +25,7 @@
         </a>
         <ul *ngIf="loggedUser.type == 'org'" class="dropdown-menu" aria-labelledby="navbarDropdown">
           <li><a class="dropdown-item nav-link" routerLink='/org-edit-sports'>Upravljanje sportovima</a></li>
-          <li><a class="dropdown-item nav-link" routerLink='/org-edit-competitions'>Upravljanje takmicenjima</a></li>
+          <li><a class="dropdown-item nav-link" routerLink='/org-edit-competitions'>Upravljanje takmičenjima</a></li>
           <li><a class="dropdown-item nav-link" routerLink='/org-edit-users'>Upravljanje nalozima</a></li>
           <li><a class="dropdown-item nav-link" routerLink='/org-record-overview'>Pregled rekorda</a></li>
           <li><a class="dropdown-item nav-link" routerLink='/change-password'>Promeni lozinku</a></li>
@@ -36,8 +36,8 @@
           <li><a class="dropdown-item nav-link" routerLink='/' (click)="logout()">Odjavi se</a></li>
         </ul>
         <ul *ngIf="loggedUser.type == 'lead'" class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <li><a class="dropdown-item nav-link" routerLink='/lead-register-competitors'>Prijavi takmicare</a></li>
-          <li><a class="dropdown-item nav-link" routerLink='/lead-competitors-overview'>Pregled takmicara</a></li>
+          <li><a class="dropdown-item nav-link" routerLink='/lead-register-competitors'>Prijavi takmičare</a></li>
+          <li><a class="dropdown-item nav-link" routerLink='/lead-competitors-overview'>Pregled takmičara</a></li>
           <li><a class="dropdown-item nav-link" routerLink='/change-password'>Promeni lozinku</a></li>
           <li><a class="dropdown-item nav-link" routerLink='/' (click)="logout()">Odjavi se</a></li>
         </ul>
