@@ -30,20 +30,17 @@
             <td>
                 {{c}}
             </td>
-            <td>
+            <td *ngFor="let s of selectedCompetition.state[i]">
+                {{ s }}
+            </td>
+            <td *ngFor="let placeholder of createRange(selectedCompetition.tryCount - selectedCompetition.state[i].length)">
                 ?
             </td>
             <td>
-                ?
+                <input type="text" class="form-control" [disabled]="selectedCompetition.tryCount == selectedCompetition.state[i].length">
             </td>
             <td>
-                ?
-            </td>
-            <td>
-                <input type="text" class="form-control">
-            </td>
-            <td>
-                <button class="btn btn-outline-primary" (click)="addScore(i)">Dodaj rezultat</button>
+                <button class="btn btn-outline-primary" [disabled]="selectedCompetition.tryCount == selectedCompetition.state[i].length" (click)="addScore(i)">Dodaj rezultat</button>
             </td>
         </tr>
     </tbody>
