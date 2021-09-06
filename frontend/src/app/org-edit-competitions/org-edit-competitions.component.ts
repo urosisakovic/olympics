@@ -6,6 +6,7 @@ import { User } from '../data/user';
 import { Participant } from '../data/participant';
 import { Country } from '../data/country';
 import { CountriesService } from '../countries.service';
+import { CompetitionService } from '../competition.service';
 
 
 @Component({
@@ -18,7 +19,8 @@ export class OrgEditCompetitionsComponent implements OnInit {
   constructor(
     private participantService: ParticipantService,
     private sportService: SportService,
-    private countryService: CountriesService) { }
+    private countryService: CountriesService,
+    private competitionService: CompetitionService) { }
 
   ngOnInit(): void {
     this.sportService.getAllSports().subscribe((data: any) => {
@@ -74,8 +76,8 @@ export class OrgEditCompetitionsComponent implements OnInit {
   pickedParticipants: string[] = [];
   allParticipants!: Participant[];
 
-  successMessage!: string;
-  errorMessage!: string;
+  successMessage: string = "";
+  errorMessage: string = "";
 
   onSportSelectChange() {
     if (this.selectedSport == null || this.selectedSport == undefined) {
@@ -98,18 +100,44 @@ export class OrgEditCompetitionsComponent implements OnInit {
 
   createCompetition() {
     if (this.emptyData()) {
-      alert("Sva polja moraju biti popunjena!");
+      this.successMessage = "";
+      this.errorMessage = "Sva polja moraju biti popunjena.";
       return;
     }
 
-    alert(this.selectedName);
-    alert(this.selectedSport);
-    alert(this.selectedDiscipline);
-    alert(this.selectedGender);
-    alert(this.selectedStartDateStr);
-    alert(this.selectedEndDateStr);
-    alert(this.selectedLocation);
-    alert(this.selectedDelegat.username)
+    if (this.selectedCompetitionFormat == "group" && this.pickedParticipants.length != 12) {
+      this.successMessage = "";
+      this.errorMessage = "Neophodno je 12 takmičara za taj format.";
+      return;
+    }
+
+    if (this.selectedCompetitionFormat == "cup" && this.pickedParticipants.length != 16 && this.pickedParticipants.length != 8 && this.pickedParticipants.length != 4) {
+      this.successMessage = "";
+      this.errorMessage = "Neophodno je 4, 8 ili 16 takmičara za taj format.";
+      return;
+    }
+
+    if (this.selectedCompetitionFormat == "finals" && this.pickedParticipants.length != 8) {
+      this.successMessage = "";
+      this.errorMessage = "Neophodno je 8 takmičara za taj format.";
+      return;
+    }
+
+    this.competitionService.addCompetition().subscribe((data: any) => {
+      if (data) {
+        if (data.message == "ok") {
+          this.errorMessage = "";
+          this.successMessage = "Takmičenje je uspešno napravljeno.";
+          
+          this.selectedName = "";
+          this.selectedStartDateStr = "";
+          this.selectedEndDateStr = "";
+          this.selectedLocation = "";
+        }
+      } else {
+
+      }
+    })
   }
 
   emptyData() {
@@ -138,6 +166,14 @@ export class OrgEditCompetitionsComponent implements OnInit {
     }
 
     if (this.selectedDelegat == undefined) {
+      return true;
+    }
+
+    if (this.selectedCompetitionFormat == undefined) {
+      return true;
+    }
+
+    if (this.selectedResultFormat == undefined) {
       return true;
     }
 
