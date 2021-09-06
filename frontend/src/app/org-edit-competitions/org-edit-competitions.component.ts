@@ -1,9 +1,11 @@
-import { ANALYZE_FOR_ENTRY_COMPONENTS, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ParticipantService } from '../participant.service';
 import { SportService } from '../sport.service';
 import { Sport } from '../data/sport';
 import { User } from '../data/user';
 import { Participant } from '../data/participant';
+import { Country } from '../data/country';
+import { CountriesService } from '../countries.service';
 
 
 @Component({
@@ -15,7 +17,8 @@ export class OrgEditCompetitionsComponent implements OnInit {
 
   constructor(
     private participantService: ParticipantService,
-    private sportService: SportService) { }
+    private sportService: SportService,
+    private countryService: CountriesService) { }
 
   ngOnInit(): void {
     this.sportService.getAllSports().subscribe((data: any) => {
@@ -37,6 +40,9 @@ export class OrgEditCompetitionsComponent implements OnInit {
     this.participantService.getAllParticipants().subscribe((data: any) => {
       this.allParticipants = data;
     });
+    this.countryService.getAllCountries().subscribe((data: any) => {
+      this.allCountries = data;
+    });
   }
 
   allSports: string[] = [];
@@ -45,6 +51,8 @@ export class OrgEditCompetitionsComponent implements OnInit {
   selectedDiscipline!: string;
 
   allSportsWithDisciplines!: Sport[];
+
+  allCountries!: Country[];
 
   allDelegats!: User[];
   selectedDelegat!: User;
@@ -60,7 +68,7 @@ export class OrgEditCompetitionsComponent implements OnInit {
   selectedMaxPoints!: number;
   selectedTryCount!: number;
 
-  validPariticipants: Participant[] = [];
+  validPariticipants: string[] = [];
   pickedParticipants: Participant[] = [];
   selectedValidParticipant!: Participant;
   allParticipants!: Participant[];
@@ -140,20 +148,74 @@ export class OrgEditCompetitionsComponent implements OnInit {
 
     this.validPariticipants = [];
 
-    for (let i = 0; i < this.allParticipants.length; i++) {
-      if (this.allParticipants[i].sport == this.selectedSport) {
-        if (this.allParticipants[i].disciplines.includes(this.selectedDiscipline)) {
-          if (this.allParticipants[i].gender == this.selectedGender) {
-            this.validPariticipants.push(this.allParticipants[i]);
+    if (this.individualSportSelected()) {
+      for (let i = 0; i < this.allParticipants.length; i++) {
+        if (this.allParticipants[i].sport == this.selectedSport) {
+          if (this.allParticipants[i].disciplines.includes(this.selectedDiscipline)) {
+            if (this.allParticipants[i].gender == this.selectedGender) {
+              this.validPariticipants.push(this.allParticipants[i].name);
+            }
           }
         }
       }
+    } 
+    else {
+      for (let i = 0; i < this.allCountries.length; i++) {
+        let cnt = 0;
+        for (let j = 0; j < this.allParticipants.length; j++) {
+          if (this.allParticipants[j].country == this.allCountries[i].name) {
+            if (this.allParticipants[j].sport == this.selectedSport) {
+              if (this.allParticipants[j].disciplines.includes(this.selectedDiscipline)) {
+                if (this.allParticipants[j].gender == this.selectedGender) {
+                  cnt++;
+                }
+              }
+            }
+          }
+        }
+
+        if (this.minPlayersReached(cnt)) {
+          this.validPariticipants.push(this.allCountries[i].name);
+        }
+      }
     }
+    
+  }
+
+  minPlayersReached(cnt: number) {
+    for (let i = 0; i < this.allSportsWithDisciplines.length; i++) {
+      if (this.allSportsWithDisciplines[i].name == this.selectedSport) {
+        if (this.allSportsWithDisciplines[i].minPlayers <= cnt) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    }
+    return false;
+  }
+
+  individualSportSelected() {
+    for (let i = 0; i < this.allSportsWithDisciplines.length; i++) {
+      if (this.allSportsWithDisciplines[i].name == this.selectedSport) {
+        if (this.allSportsWithDisciplines[i].type == "team") {
+          return false;
+        } else {
+          return true;
+        }
+      }
+    }
+
+    return false;
   }
 
   onGenderSelect() {
     if (this.selectedSport != undefined) {
       this.loadValidParticipants();
     }
+  }
+
+  selectParticipant() {
+
   }
 }
