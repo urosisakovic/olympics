@@ -15,48 +15,26 @@ export class MedalsComponent implements OnInit {
   ngOnInit(): void {
     this.countriesService.getAllCountries().subscribe((data: any) => {
       this.allCountries = data;
-    });
 
-    c3.generate({
-      bindto: '#country-chart',
-      
-      data: {
-        columns: [
-          ['Srbija', 10],
-          ['Grcka', 8],
-          ['SAD', 42],
-          ['Nemacka', 1],
-          ['Francuska', 8],
-          ['Rusija', 60]
-        ],
-        type: 'bar'
-      },
-      bar: {
-        width: {
-          ratio: 0.5
-        }
+      let chart1Columns: any[] = [];
+      for (let i = 0; i < this.allCountries.length; i++) {
+        chart1Columns.push([this.allCountries[i].name, this.allCountries[i].goldMedalsWon + this.allCountries[i].silverMedalsWon + this.allCountries[i].bronzeMedalsWon]);
       }
-    });
 
-    c3.generate({
-      bindto: '#sport-chart',
-      
-      data: {
-        columns: [
-          ['Srbija', 10],
-          ['Grcka', 8],
-          ['SAD', 42],
-          ['Nemacka', 1],
-          ['Francuska', 8],
-          ['Rusija', 60]
-        ],
-        type: 'bar'
-      },
-      bar: {
-        width: {
-          ratio: 0.5
+      c3.generate({
+        bindto: '#country-chart',
+        
+        data: {
+          columns: chart1Columns,
+          type: 'bar'
+        },
+        bar: {
+          width: {
+            ratio: 0.5
+          }
         }
-      }
+      });
+
     });
   }
 

@@ -1,31 +1,33 @@
-<div>
-    <h1>Medalje</h1>
-    <table class="table table-striped">
-        <thead class="table-dark">
-            <tr>
-                <td>Rang</td>
-                <td>Naziv zemlje</td>
-                <td>Zlatne medalje</td>
-                <td>Srebrne medalje</td>
-                <td>Bronzane medalje</td>
-                <td>Ukupno medalja</td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor='let country of allCountries; let i = index'>
-                <td>{{i + 1}}</td>
-                <td>{{country.name}}</td>
-                <td>{{country.goldMedalsWon}}</td>
-                <td>{{country.silverMedalsWon}}</td>
-                <td>{{country.bronzeMedalsWon}}</td>
-                <td>{{country.goldMedalsWon + country.silverMedalsWon + country.bronzeMedalsWon}}</td>
-            </tr>
-        </tbody>
-    </table>
+<h1>Medalje</h1>
+<table class="table table-striped">
+    <thead class="table-dark">
+        <tr>
+            <td>Rang</td>
+            <td>Naziv zemlje</td>
+            <td>Zlatne medalje</td>
+            <td>Srebrne medalje</td>
+            <td>Bronzane medalje</td>
+            <td>Ukupno medalja</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor='let country of allCountries; let i = index'>
+            <td>{{i + 1}}</td>
+            <td>{{country.name}}</td>
+            <td>{{country.goldMedalsWon}}</td>
+            <td>{{country.silverMedalsWon}}</td>
+            <td>{{country.bronzeMedalsWon}}</td>
+            <td>{{country.goldMedalsWon + country.silverMedalsWon + country.bronzeMedalsWon}}</td>
+        </tr>
+    </tbody>
+</table>
 
+<div id="chart-1">
     <h1>Vizualizacija broja osvojenih medalja po zemljama</h1>
     <div id="country-chart"></div>
+</div>
 
+<!--<div id="chart-2">
     <h1>Vizualizacija broja osvojenih medalja po sportovima i disciplinama</h1>
     <div id="sport-chart"></div>
-</div>
+</div>-->
