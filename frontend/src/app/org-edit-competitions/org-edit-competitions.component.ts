@@ -145,8 +145,6 @@ export class OrgEditCompetitionsComponent implements OnInit {
   }
 
   loadValidParticipants() {
-    alert("loadValidParticipants");
-
     this.validPariticipants = [];
 
     if (this.individualSportSelected()) {
@@ -228,7 +226,11 @@ export class OrgEditCompetitionsComponent implements OnInit {
     }
 
     this.pickedParticipants.push(this.selectedValidParticipant);
+  }
 
-
+  unselectParticipant(index: number) {
+    let participantToBeDeleted = this.pickedParticipants[index];
+    this.pickedParticipants.splice(index, 1);
+    this.validPariticipants.push(participantToBeDeleted);
   }
 }
