@@ -8,6 +8,7 @@ import registrationRequest from './model/registrationRequest';
 import participant from './model/participant';
 import sport from './model/sport';
 import record from './model/record';
+import competition from './model/competition';
 
 const app = express();
 
@@ -325,7 +326,7 @@ router.route('/add-participants').post((req, res) => {
 });
 
 router.route('/add-sport-with-discipline').post((req, res) => {
-    console.log("//add-sport-with-discipline route hit");
+    console.log("/add-sport-with-discipline route hit");
 
     let sportName = req.body.sport;
     let discipline = req.body.discipline;
@@ -363,6 +364,46 @@ router.route('/add-sport-with-discipline').post((req, res) => {
     });
 });
 
+
+router.route('/add-competition').post((req, res) => {
+    console.log("/add-competition route hit");
+
+    let name = req.body.name;
+    let sport = req.body.sport;
+    let discipline = req.body.discipline;
+    let gender = req.body.gender;
+    let startDate = req.body.startDate;
+    let endDate = req.body.endDate;
+    let location = req.body.location;
+    let delegatUsername = req.body.delegatUsername;
+    let competitionFormat = req.body.competitionFormat;
+    let resultFormat = req.body.resultFormat;
+    let pickedParticipants = req.body.pickedParticipants;
+
+    const competitionData = {
+        name: name,
+        sport: sport,
+        discipline: discipline,
+        gender: gender,
+        startDate: startDate,
+        endDate: endDate,
+        location: location,
+        delegatUsername: delegatUsername,
+        competitionFormat: competitionFormat,
+        resultFormat: resultFormat,
+        pickedParticipants: pickedParticipants
+    };
+
+    let newCompetition = new competition(competitionData);
+        
+    newCompetition.save(function(err, saved) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.status(200).json({'message': "ok"});
+        }
+    });
+});
 
 app.use('/', router);
 app.listen(4000, () => console.log(`Express server running on port 4000`));

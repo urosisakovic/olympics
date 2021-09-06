@@ -6,7 +6,7 @@ import { User } from '../data/user';
 import { Participant } from '../data/participant';
 import { Country } from '../data/country';
 import { CountriesService } from '../countries.service';
-import { CompetitionService } from '../competition.service';
+import { CompetitionsService } from '../competitions.service';
 
 
 @Component({
@@ -20,7 +20,7 @@ export class OrgEditCompetitionsComponent implements OnInit {
     private participantService: ParticipantService,
     private sportService: SportService,
     private countryService: CountriesService,
-    private competitionService: CompetitionService) { }
+    private competitionsService: CompetitionsService) { }
 
   ngOnInit(): void {
     this.sportService.getAllSports().subscribe((data: any) => {
@@ -123,11 +123,29 @@ export class OrgEditCompetitionsComponent implements OnInit {
       return;
     }
 
-    this.competitionService.addCompetition().subscribe((data: any) => {
+    if ((!this.isValidDate(this.selectedStartDateStr)) || (!this.isValidDate(this.selectedEndDateStr))) {
+      this.successMessage = "";
+      this.errorMessage = "Nepravilno uneti datumi.";
+      return;
+    }
+
+    this.competitionsService.addCompetition(
+      this.selectedName,
+      this.selectedSport,
+      this.selectedDiscipline,
+      this.selectedGender,
+      this.stringToDate(this.selectedStartDateStr),
+      this.stringToDate(this.selectedEndDateStr),
+      this.selectedLocation,
+      this.selectedDelegat.username,
+      this.selectedCompetitionFormat,
+      this.selectedResultFormat,
+      this.pickedParticipants).subscribe((data: any) => {
       if (data) {
         if (data.message == "ok") {
           this.errorMessage = "";
           this.successMessage = "Takmičenje je uspešno napravljeno.";
+          this.pickedParticipants = [];
           
           this.selectedName = "";
           this.selectedStartDateStr = "";
@@ -138,6 +156,19 @@ export class OrgEditCompetitionsComponent implements OnInit {
 
       }
     })
+  }
+
+  stringToDate(str: string) {
+    return new Date(
+      parseInt(str.substring(6, 10)),
+      parseInt(str.substring(3, 5)),
+      parseInt(str.substring(0, 2))
+    );
+  }
+
+  isValidDate(dateStr: string) {
+    const re = /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/;
+    return re.test(String(dateStr).toLowerCase());
   }
 
   emptyData() {

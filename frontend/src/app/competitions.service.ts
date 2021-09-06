@@ -14,9 +14,30 @@ export class CompetitionsService {
     return this.http.get(`${this.uri}/all-competitions`);
   }
 
-  addCompetition() {
+  addCompetition(
+      name: string,
+      sport: string,
+      discipline: string,
+      gender: string,
+      startDate: Date,
+      endDate: Date,
+      location: string,
+      delegatUsername: string,
+      competitionFormat: string,
+      resultFormat: string,
+      pickedParticipants: string[]) {
     const data = {
-
+      name: name,
+      sport: sport,
+      discipline: discipline,
+      gender: gender,
+      startDate: startDate,
+      endDate: endDate,
+      location: location,
+      delegatUsername: delegatUsername,
+      competitionFormat: competitionFormat,
+      resultFormat: resultFormat,
+      pickedParticipants: pickedParticipants
     };
 
     return this.http.post(`${this.uri}/add-competition`, data);
