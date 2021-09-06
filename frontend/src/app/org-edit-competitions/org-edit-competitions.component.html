@@ -91,17 +91,15 @@
     <table *ngIf="pickedParticipants.length > 0" class="table table-striped">
         <thead class="table table-dark">
             <tr>
-                <td>Ime</td>
-                <td>Zemlja</td>
+                <td>Takmičar/Ekipa</td>
                 <td>Nosilac</td>
                 <td></td>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let pp of pickedParticipants; let i = index;">
-                <td> {{pp.name}} </td>
-                <td> {{pp.country}} </td>
-                <td> {{i}} </td>
+                <td> {{pp}} </td>
+                <td> {{i + 1}} </td>
                 <td>
                     <button class="btn btn-dange">Ukloni</button>
                 </td>

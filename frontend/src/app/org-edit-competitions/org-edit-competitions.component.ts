@@ -69,8 +69,9 @@ export class OrgEditCompetitionsComponent implements OnInit {
   selectedTryCount!: number;
 
   validPariticipants: string[] = [];
-  pickedParticipants: Participant[] = [];
-  selectedValidParticipant!: Participant;
+  selectedValidParticipant!: string;
+
+  pickedParticipants: string[] = [];
   allParticipants!: Participant[];
 
   successMessage!: string;
@@ -216,6 +217,18 @@ export class OrgEditCompetitionsComponent implements OnInit {
   }
 
   selectParticipant() {
+    if (this.selectedValidParticipant == undefined) {
+      return;
+    }
+
+    for (let i = 0; i < this.validPariticipants.length; i++) {
+      if (this.validPariticipants[i] == this.selectedValidParticipant) {
+        this.validPariticipants.splice(i, 1);
+      }
+    }
+
+    this.pickedParticipants.push(this.selectedValidParticipant);
+
 
   }
 }
