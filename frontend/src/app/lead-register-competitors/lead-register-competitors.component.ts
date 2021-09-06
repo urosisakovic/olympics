@@ -172,4 +172,8 @@ export class LeadRegisterCompetitorsComponent implements OnInit {
     return false;
   }
 
+  addPariticipantFromFile() {
+    
+  }
+
 }

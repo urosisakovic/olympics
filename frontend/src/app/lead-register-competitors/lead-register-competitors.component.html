@@ -1,73 +1,60 @@
-<h1>Prijava takmicara</h1>
+<h1>Prijava takmičara</h1>
 
 <form>
-    <table>
-        <tr>
-            <td>Sport:</td>
-            <td>
-                <select name='sport-select' [(ngModel)]="selectedSport" (change)="onSportSelectChange()">
-                    <option [ngValue]='s' *ngFor='let s of allSports'>{{s}}</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Disciplina:
-            </td>
-            <td>
-                <select name='discipline-select' [(ngModel)]="selectedDiscipline" [disabled]="relatedDisciplines.length <= 1">
-                    <option [ngValue]='d' *ngFor='let d of relatedDisciplines'>{{d}}</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>Ime:</td>
-            <td>
-                <input type="text" name="first-name-input" [(ngModel)]="selectedFirstName">
-            </td>
-        </tr>
-        <tr>
-            <td>Prezime:</td>
-            <td>
-                <input type="text" name='last-name-input' [(ngModel)]="selectedLastName">
-            </td>
-        </tr>
-        <tr>
-            <td>Pol:</td>
-            <td>
-                <input type="radio" name="gender-select" [value]='"M"' [(ngModel)]='selectedGender'> M
-                <input type="radio" name="gender-select" [value]='"F"' [(ngModel)]='selectedGender'> Z
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <button (click)="addPariticipant()">Prijavi takmicara</button>
-            </td>
-        </tr>
-    </table>
-</form>
+    <div class="form-group">
+        <label for="sport-select">Sport</label>
+        <select class="form-control" name='sport-select' [(ngModel)]="selectedSport" (change)="onSportSelectChange()">
+            <option [ngValue]='s' *ngFor='let s of allSports'>{{s}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="discipline-select">Disciplina</label>
+        <select class="form-control" name='discipline-select' [(ngModel)]="selectedDiscipline" [disabled]="relatedDisciplines.length <= 1">
+            <option [ngValue]='d' *ngFor='let d of relatedDisciplines'>{{d}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+      <label for="first-name">Ime</label>
+      <input type="text" class="form-control" name='first-name' [(ngModel)]='selectedFirstName'>
+    </div>
+    <div class="form-group">
+        <label for="last-name">Prezime</label>
+        <input type="text" class="form-control" name='last-name' [(ngModel)]='selectedLastName'>
+    </div>
+    <div class="form-group">
+        <label for="gender-radio">Pol</label>
+        <div class="form-check" name="gender-radio">
+            <input class="form-check-input" type="radio" name="gender" [value]='"M"' [(ngModel)]='selectedGender'>
+            <label class="form-check-label" for="exampleRadios1">
+            Muški
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="gender" [value]='"M"' [(ngModel)]='selectedGender'>
+            <label class="form-check-label" for="exampleRadios2">
+            Ženski
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" (click)="addPariticipant()">Prijavi takmičara</button>
+    </div>
+  </form>
 
-<div>
-Ucitaj iz fajla
+
+<h1>Učitaj iz fajla</h1>
 <form [formGroup] = "formGroup" (ngSubmit)="onSubmit()">
-    <input type="file" (change)="onFileChange($event)" />
-    <input type="submit" value="Ubaci igrace" />
+    <div class="form-group">
+        <label for="file-select">Izaberi fajl</label>
+        <input type="file" class="form-control" name='file-select' (change)="onFileChange($event)">
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" (click)="addPariticipantFromFile()">Prijavi takimičare</button>
+    </div>
 </form>
 
-<form>
-    <table>
-        <tr>
-            <td>
-                Putanja do fajla:
-            </td>
-            <td>
-                <input type="text">
-            </td>
-        </tr>
-    </table>
-</form>
-</div>
 
+<!--
 <h1>Povlacenje prijave takmicara</h1>
 
 <form>
@@ -89,3 +76,4 @@ Ucitaj iz fajla
         </tr>
     </table>
 </form>
+-->
