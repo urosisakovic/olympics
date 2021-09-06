@@ -35,4 +35,25 @@ export class ParticipantService {
 
     return this.http.post(`${this.uri}/add-participants`, data);
   }
+
+  queryParticipants(
+    name: string, 
+    country: string, 
+    sport: string,
+    discipline: string,
+    male: boolean,
+    female: boolean,
+    onlyMedalWinners: boolean) {
+  const data = {
+    name: name,
+    country: country,
+    sport: sport,
+    discipline: discipline,
+    male: male,
+    female: female,
+    onlyMedalWinners: onlyMedalWinners
+  };
+
+  return this.http.post(`${this.uri}/query-participants`, data);
+  }
 }

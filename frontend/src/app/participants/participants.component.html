@@ -8,35 +8,34 @@
     <div class="form-group">
         <label for="country-select">Zemlja</label>
         <select class="form-control" name='country-select' [(ngModel)]="selectedCountry">
-            <option [value]='undefined'>Sve zemlje</option>
-            <option [ngValue]='c' *ngFor='let c of allCountries'>{{c.name}}</option>
+            <option [value]='"all"'>Sve zemlje</option>
+            <option [ngValue]='c.name' *ngFor='let c of allCountries'>{{c.name}}</option>
         </select>
     </div>
     <div class="form-group">
         <label for="sport-select">Sport</label>
-        <select class="form-control" name='sport-select' [(ngModel)]="selectedSport">
-            <option [value]='undefined'>Svi sportovi</option>
-            <option [ngValue]='s' *ngFor='let s of allSports'>{{s.name}}</option>
+        <select class="form-control" name='sport-select' [(ngModel)]="selectedSport" (change)="onSportSelectChange()">
+            <option [value]='"all"'>Svi sportovi</option>
+            <option [ngValue]='s' *ngFor='let s of allSports'>{{s}}</option>
         </select>
     </div>
     <div class="form-group">
         <label for="discipline-select">Disciplina</label>
-        <select class="form-control" name='discipline-select' [(ngModel)]="selectedDiscipline">
-            <option [value]='undefined'>Sve discipline</option>
-            <option [ngValue]='s' *ngFor='let s of allSports'>{{s.name}}</option>
+        <select class="form-control" name='discipline-select' [(ngModel)]="selectedDiscipline" [disabled]="relatedDisciplines.length <= 1">
+            <option [value]='"all"'>Sve discipline</option>
+            <option [ngValue]='rd' *ngFor='let rd of relatedDisciplines'>{{rd}}</option>
         </select>
     </div>
-
     <div class="form-group">
         <label for="gender-radio">Pol</label>
         <div class="form-check" name="gender-radio">
-            <input class="form-check-input" type="radio" name="gender" [value]='"M"' [(ngModel)]='selectedGender'>
+            <input class="form-check-input" type="checkbox" name="gender" [(ngModel)]='maleParticipants'>
             <label class="form-check-label" for="exampleRadios1">
             Muški
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="gender" [value]='"M"' [(ngModel)]='selectedGender'>
+            <input class="form-check-input" type="checkbox" name="gender" [(ngModel)]='femaleParticipants'>
             <label class="form-check-label" for="exampleRadios2">
             Ženski
             </label>
@@ -51,4 +50,47 @@
     <div class="form-group">
         <button type="submit" class="btn btn-primary" (click)="searchParticipants()">Pretraži</button>
     </div>
-  </form>
+</form>
+
+<table *ngIf="!notClicked" class="table table-striped">
+    <thead class="table table-dark">
+        <tr>
+            <td>
+                Zemlja
+            </td>
+            <td>
+                Ime
+            </td>
+            <td>
+                Pol
+            </td>
+            <td>
+                Sport
+            </td>
+            <td>
+                Medalje
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let sp of selectedParticipants">
+            <td>
+                {{sp.country}}
+            </td>
+            <td>
+                {{sp.name}}
+            </td>
+            <td>
+                <div *ngIf="sp.gender == 'M'">Muški</div>
+                <div *ngIf="sp.gender == 'F'">Ženski</div>
+            </td>
+            <td>
+                {{sp.sport}}
+            </td>
+            <td>
+                {{sp.goldMedalsWon + sp.silverMedalsWon + sp.bronzeMedalsWon}}
+            </td>
+
+        </tr>
+    </tbody>
+</table>

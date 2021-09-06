@@ -6,5 +6,5 @@ export class Participant {
     silverMedalsWon!: number;
     bronzeMedalsWon!: number;
     sport!: string;
-    discipline!: string;
+    disciplines!: string[];
 }

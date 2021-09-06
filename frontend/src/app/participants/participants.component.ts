@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CountriesService } from '../countries.service';
 import { Country } from '../data/country';
-import { Discipline } from '../data/discipline';
 import { Participant } from '../data/participant';
 import { Sport } from '../data/sport';
 import { ParticipantService } from '../participant.service';
@@ -27,44 +26,154 @@ export class ParticipantsComponent implements OnInit {
       this.allCountries = data;
     });
     this.sportService.getAllSports().subscribe((data: any) => {
-      this.allSports = data;
+      this.allSportsWithDisciplines = data;
+
+      this.allSports = [];
+
+      for (let i = 0; i < this.allSportsWithDisciplines.length; i++) {
+        if (this.allSports.includes(this.allSportsWithDisciplines[i].name)) {
+          continue;
+        } else {
+          this.allSports.push(this.allSportsWithDisciplines[i].name);
+        }
+      }
     });
+
+    this.selectedCountry = "all";
+    this.selectedSport = "all";
+    this.selectedDiscipline = "all";
   }
 
   allParticipants!: Participant[];
   selectedParticipants!: Participant[];
 
   allCountries!: Country[];
-  allSports!: Sport[];
-  allDisciplines!: Discipline[];
+  allSportsWithDisciplines!: Sport[];
+  allSports!: string[];
+  relatedDisciplines: string[] = [];
 
   selectedName!: string;
-  selectedCountry!: Country;
-  selectedGender!: string;
+  selectedCountry!: string;
   selectedOnlyMedalWinners!: boolean;
-  selectedSport!: Sport;
-  selectedDiscipline!: Discipline;
+  selectedSport!: string;
+  selectedDiscipline!: string;
+
+  maleParticipants: boolean = false;
+  femaleParticipants: boolean = false;
+
+  notClicked: boolean = true;
 
   searchParticipants() {
-    if (this.selectedName == undefined)
-      alert("Nerma filter za ime");
-    else
-      alert(this.selectedName);
+    // this.participantService.queryParticipants(
+    //   this.selectedName,
+    //   this.selectedCountry.name,
+    //   this.selectedSport,
+    //   this.selectedDiscipline,
+    //   this.maleParticipants,
+    //   this.femaleParticipants,
+    //   this.selectedOnlyMedalWinners).subscribe((data: any) => {
 
-    if (this.selectedCountry == undefined)
-      alert("Sve zemlje");
-    else
-      alert(this.selectedCountry.name);
+    //   });
 
-    if (this.selectedSport == undefined)
-      alert("Svi sportovi");
-    else
-      alert(this.selectedSport.name);
+    this.notClicked = false;
 
-    alert(this.selectedGender);
+    this.selectedParticipants = [];
+    for (let i = 0; i < this.allParticipants.length; i++) {
+      if (!this.checkName(this.allParticipants[i])) {
+        continue;
+      }
+      if (!this.checkCountry(this.allParticipants[i])) {
+        continue;
+      }
+      if (!this.checkSport(this.allParticipants[i])) {
+        continue;
+      }
+      if (!this.checkDiscipline(this.allParticipants[i])) {
+        continue;
+      }
+      if (!this.checkGender(this.allParticipants[i])) {
+        continue;
+      }
+      if (!this.checkOnlyMedalWinners(this.allParticipants[i])) {
+        continue;
+      }
 
-    if (this.selectedOnlyMedalWinners == undefined)
-      alert("Svi")
+      this.selectedParticipants.push(this.allParticipants[i]);
+    }
+  }
+
+  checkName(p: Participant) {
+    if (this.selectedName == undefined || this.selectedName == "") {
+      return true;
+    }
+
+    return this.selectedName == p.name;
+  }
+
+  checkCountry(p: Participant) {
+    if (this.selectedCountry == undefined || this.selectedCountry == "all") {
+      return true;
+    }
+
+    return this.selectedCountry == p.country;
+  }
+
+  checkSport(p: Participant) {
+    if (this.selectedSport == undefined || this.selectedSport == "all") {
+      return true;
+    }
+
+    return this.selectedSport == p.sport;
+  }
+
+  checkDiscipline(p: Participant) {
+    if (this.selectedDiscipline == undefined || this.selectedDiscipline == "all") {
+      return true;
+    }
+
+    return p.disciplines.includes(this.selectedDiscipline);
+  }
+
+  checkGender(p: Participant) {
+    if (this.maleParticipants && this.femaleParticipants) {
+      return true;
+    }
+    if (!this.maleParticipants && !this.femaleParticipants) {
+      return true;
+    }
+    if (this.maleParticipants && p.gender == "M") {
+      return true;
+    }
+    if (this.femaleParticipants && p.gender == "F") {
+      return true;
+    }
+
+    return false;
+  }
+
+  checkOnlyMedalWinners(p: Participant) {
+    if (!this.selectedOnlyMedalWinners) {
+      return true;
+    }
+
+    return p.goldMedalsWon + p.silverMedalsWon + p.bronzeMedalsWon > 0;
+  }
+
+  onSportSelectChange() {
+    if (this.selectedSport == null || this.selectedSport == undefined) {
+      return;
+    }
+
+    this.relatedDisciplines = [];
+    for (let i = 0; i < this.allSportsWithDisciplines.length; i++) {
+      if (this.allSportsWithDisciplines[i].name == this.selectedSport) {
+        this.relatedDisciplines.push(this.allSportsWithDisciplines[i].discipline);
+      }
+    }
+
+    if (this.relatedDisciplines.length == 1 && this.relatedDisciplines[0] == "") {
+      this.relatedDisciplines = [];
+    }
   }
 
 }
