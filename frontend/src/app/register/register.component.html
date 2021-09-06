@@ -1,56 +1,41 @@
-<div>
-    <h1>Registruj se</h1>
-
-    <form>
-        <table>
-            <tr>
-                <td>Korisnicko ime: </td>
-                <td><input type="text" name="username" [(ngModel)]="selectedUsername"></td>
-            </tr>
-            <tr>
-                <td>Lozinka: </td>
-                <td><input type="password" name="password" [(ngModel)]="selectedPassword"></td>
-            </tr>
-            <tr>
-                <td>Potvrda lozinke: </td>
-                <td><input type="password" name="repeat-password" [(ngModel)]="selectedRepeatedPassword"></td>
-            </tr>
-            <tr>
-                <td>Ime: </td>
-                <td><input type="text" name="first-name" [(ngModel)]="selectedFirstName"></td>
-            </tr>
-            <tr>
-                <td>Prezime: </td>
-                <td><input type="text" name="last-name" [(ngModel)]="selectedLastName"></td>
-            </tr>
-            <tr>
-                <td>Zemlja: </td>
-                <td>
-                    <select name='country-select' [(ngModel)]="selectedCountry">
-                        <option *ngFor='let country of allCountries' [ngValue]='country'>
-                            {{ country.name }}
-                        </option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Email: </td>
-                <td><input type="text" name="email" [(ngModel)]="selectedEmail"></td>
-            </tr>
-            <tr>
-                <td>Tip korisnika: </td>
-                <td>
-                    <select name='type-select' [(ngModel)]="selectedType">
-                        <option [ngValue]='"delegat"'>Delegat</option>
-                        <option [ngValue]='"lead"'>Vodja nacionalne delegacije</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <button (click)="register()">Registruj se</button>
-                </td>
-            </tr>
-        </table>
-    </form>
-</div>
+<h1>Registruj se</h1>
+<form>
+    <div class="form-group">
+      <label for="username">Korisničko ime</label>
+      <input type="text" class="form-control" name='username' [(ngModel)]='selectedUsername'>
+    </div>
+    <div class="form-group">
+        <label for="password">Lozinka</label>
+        <input type="password" class="form-control" name='password' [(ngModel)]='selectedPassword'>
+    </div>
+    <div class="form-group">
+        <label for="repeat-password">Ponovljena lozinka</label>
+        <input type="password" class="form-control" name='repeat-password' [(ngModel)]='selectedRepeatedPassword'>
+    </div>
+    <div class="form-group">
+        <label for="first-name">Ime</label>
+        <input type="text" class="form-control" name='first-name' [(ngModel)]='selectedFirstName'>
+    </div>
+    <div class="form-group">
+        <label for="last-name">Prezime</label>
+        <input type="text" class="form-control" name='last-name' [(ngModel)]='selectedLastName'>
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" name='email' [(ngModel)]='selectedEmail'>
+    </div>
+    <div class="form-group">
+        <label for="country-select">Zemlja</label>
+        <select class="form-control" name='country-select' [(ngModel)]="selectedCountry">
+            <option [ngValue]='c' *ngFor='let c of allCountries'>{{c.name}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="country-select">Tip korisnika</label>
+        <select class='form-control' name='type-select' [(ngModel)]="selectedType">
+            <option [ngValue]='"delegat"'>Delegat</option>
+            <option [ngValue]='"lead"'>Vođa nacionalne delegacije</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="register()">Registruj se</button><br/>
+</form>
