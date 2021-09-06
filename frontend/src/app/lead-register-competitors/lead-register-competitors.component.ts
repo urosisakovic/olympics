@@ -94,8 +94,34 @@ export class LeadRegisterCompetitorsComponent implements OnInit {
       const fileReader = new FileReader();
       fileReader.readAsText(this.selectedFile, "UTF-8");
       fileReader.onload = () => {
+        alert("fileReader.onload");
+
         if (fileReader.result) {
-          console.log(JSON.parse(String(fileReader.result)));
+          let text = String(fileReader.result);
+          if (!this.isValidJSONString(text)) {
+            alert("Fajl ne sadrži validan JSON.");
+          }
+          let participants = JSON.parse(text);
+          if (!Array.isArray(participants)) {
+            participants = [participants];
+          }
+
+          for (let i = 0; i < participants.length; i++) {
+            if (!this.isValidParticipantObject(participants[i])) {
+              alert("Uneti JSON ne odgovara sadržaju objekta takmičara.");
+              return;
+            }
+          }
+
+          for (let i = 0; i < participants.length; i++) {
+            alert("here");
+            this.participantService.addParticipant(
+              this.loggedUser.country,
+              participants[i].name,
+              participants[i].gender,
+              participants[i].sport,
+              participants[i].discipline).subscribe((data: any) => {});
+          }
         }
       }
       fileReader.onerror = (error) => {
@@ -105,6 +131,25 @@ export class LeadRegisterCompetitorsComponent implements OnInit {
     } else {
       alert("Morate izabrati fajl");
     }
+  }
+
+  isValidParticipantObject(obj: Object) {
+    if (!('sport' in obj)) {
+      return false;
+    }
+
+    if (!('discipline' in obj)) {
+      return false;
+    }
+
+    if (!('name' in obj)) {
+      return false;
+    }
+
+    if (!('gender' in obj)) {
+      return false;
+    }
+    return true;
   }
 
   public onFileChange(event: any) {
@@ -126,6 +171,15 @@ export class LeadRegisterCompetitorsComponent implements OnInit {
     }
 
     this.selectedDiscipline = this.relatedDisciplines[0];
+  }
+
+  isValidJSONString(jsonString: string) {
+    try {
+        JSON.parse(jsonString);
+    } catch (e) {
+        return false;
+    }
+    return true;
   }
 
   addPariticipant() {
@@ -178,10 +232,6 @@ export class LeadRegisterCompetitorsComponent implements OnInit {
     }
 
     return false;
-  }
-
-  addPariticipantFromFile() {
-    
   }
 
 }
