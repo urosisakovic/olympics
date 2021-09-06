@@ -66,8 +66,6 @@
         <label for="try-count">Broj pokušaja</label>
         <input type="number" class="form-control" name='try-count' [(ngModel)]="selectedTryCount">
     </div>
-    
-
     <div class="form-group">
         <label for="format-select">Format rezultata</label>
         <select class="form-control" name='format-select' [(ngModel)]="selectedResultFormat">
@@ -80,85 +78,35 @@
             <option [ngValue]='"P1_I1:P2_I2"'>P1_I1:P2_I2</option>
         </select>
     </div>
+    <div class="form-group">
+        <label for="participant-select">Takmičari</label>
+        <select class="form-control" name='participant-select' [(ngModel)]="selectedValidParticipant">
+            <option [ngValue]='vp' *ngFor='let vp of validPariticipants'>{{vp}}</option>
+        </select>
+    </div>
 
-    <h1>Takmičari</h1>
+    <table *ngIf="pickedParticipants.length > 0" class="table table-striped">
+        <thead class="table table-dark">
+            <tr>
+                <td>Ime</td>
+                <td>Zemlja</td>
+                <td>Nosilac</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let pp of pickedParticipants; let i = index;">
+                <td> {{pp.name}} </td>
+                <td> {{pp.country}} </td>
+                <td> {{i}} </td>
+                <td>
+                    <button class="btn btn-dange">Ukloni</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
     <div class="form-group">
         <button type="submit" class="btn btn-primary" (click)="createCompetition()">Napravi takmičenje</button>
     </div>
 </form>
-
-
-<table></table>
-
-<!--
-<form>
-    <table>
-        <tr>
-            <td colspan="2" align="center">
-                <h2>Takmicari</h2>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Takmicari:
-            </td>
-            <td>
-                <select></select>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <button>Dodaj takmicara</button>
-            </td>
-        </tr>
-        <tr>
-            <table></table>
-        </tr>
-        <tr>
-            <td colspan="2" align="center">
-                <h2>Format</h2>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Broj takmicara:
-            </td>
-            <td>
-                <input type="text">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Rezultat:
-            </td>
-            <td>
-                <select>
-                    <option>P1_T1:P2_T2</option>
-                    <option>SS,TT</option>
-                    <option>MM,SS,TT</option>
-                    <option>M,CM</option>
-                    <option>MM,CM</option>
-                    <option>HH:MM:CC</option>
-                    <option>P1_I1:P2_I2</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Grupna faza:
-            </td>
-            <td>
-                <input type='radio'> Da
-                <input type='radio'> Ne
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <button>Dodaj takmicenje</button>
-            </td>
-        </tr>
-    </table>
-</form>
--->

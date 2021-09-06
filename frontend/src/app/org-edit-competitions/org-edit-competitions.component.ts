@@ -3,6 +3,7 @@ import { ParticipantService } from '../participant.service';
 import { SportService } from '../sport.service';
 import { Sport } from '../data/sport';
 import { User } from '../data/user';
+import { Participant } from '../data/participant';
 
 
 @Component({
@@ -55,6 +56,13 @@ export class OrgEditCompetitionsComponent implements OnInit {
   selectedResultFormat!: string;
   selectedMaxPoints!: number;
   selectedTryCount!: number;
+
+  validPariticipants!: Participant[];
+  pickedParticipants!: Participant[];
+  selectedValidParticipant!: Participant;
+
+  successMessage!: string;
+  errorMessage!: string;
 
   onSportSelectChange() {
     if (this.selectedSport == null || this.selectedSport == undefined) {
