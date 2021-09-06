@@ -37,7 +37,7 @@
                 ?
             </td>
             <td>
-                <input type="text" class="form-control" [disabled]="selectedCompetition.tryCount == selectedCompetition.state[i].length">
+                <input type="text" class="form-control" [disabled]="selectedCompetition.tryCount == selectedCompetition.state[i].length" [(ngModel)]="selectedResult[i]">
             </td>
             <td>
                 <button class="btn btn-outline-primary" [disabled]="selectedCompetition.tryCount == selectedCompetition.state[i].length" (click)="addScore(i)">Dodaj rezultat</button>

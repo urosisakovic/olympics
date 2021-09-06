@@ -18,9 +18,12 @@ export class DelegatComponent implements OnInit {
 
   allCompetitions!: any[];
   selectedCompetition: any;
+  selectedResult: string[] = [];
 
   onCompetitionSelectChange() {
-
+    for (let i = 0; i < this.selectedCompetition.pickedParticipants.length; i++) {
+      this.selectedResult.push("");
+    }
   }
 
   createRange(num: number){
@@ -28,7 +31,36 @@ export class DelegatComponent implements OnInit {
   }
 
   addScore(index: number) {
+    if (!this.validFormat()) {
+      alert("Los format.");
+      return;
+    }
 
+    this.selectedCompetition.state[index].push(this.selectedResult[index]);
+    this.selectedResult[index] = "";
+
+    // TODO: update baze
+
+    if (this.finished()) {
+      alert("Gotovo takmicenje, delimo medalje!");
+      return;
+    }
+
+  }
+
+  validFormat() {
+    // TODO
+    return true;
+  }
+
+  finished() {
+    for (let i = 0; i < this.selectedCompetition.state.length; i++) {
+      if (this.selectedCompetition.state[i].length < this.selectedCompetition.tryCount) {
+        return false;
+      }
+    }
+
+    return true;
   }
 
 }
