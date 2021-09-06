@@ -36,7 +36,7 @@ let Competition = new Schema({
     pickedParticipants: [{
         type: String
     }],
-    tryCountr: {
+    tryCount: {
         type: Number
     },
     maxPoints: {
