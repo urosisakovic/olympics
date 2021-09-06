@@ -24,5 +24,9 @@
         <label for="min-players-select">Maksimalni broj igraca</label>
         <input  class="form-control" type="number" name='max-players-select' [(ngModel)]="selectedMaxPlayers">
     </div>
-    <button type="submit" class="btn btn-primary" (click)="addSport()">Dodaj sport</button>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" (click)="addSport()">Dodaj sport</button>
+    </div>
+    <div *ngIf="successMessage != ''" class="alert alert-success">{{ successMessage }}</div>
+    <div *ngIf="errorMessage != ''" class="alert alert-danger">{{ errorMessage }}</div>
 </form>

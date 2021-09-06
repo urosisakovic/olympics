@@ -19,9 +19,14 @@ export class OrgEditSportsComponent implements OnInit {
   selectedMinPlayers!: number;
   selectedMaxPlayers!: number;
 
+  successMessage: string = "";
+  errorMessage: string = "";
+
+
   addSport() {
     if (this.emptyData()) {
-      alert("Sva polja moraju biti popunjena");
+      this.successMessage = "";
+      this.errorMessage = "Sva polja moraju biti popunjena.";
       return;
     }
 
@@ -43,11 +48,22 @@ export class OrgEditSportsComponent implements OnInit {
       this.selectedType,
       minPlayerPlaceholder,
       maxPlayerPlaceholder).subscribe((data: any) => {
+        if (!data) {
+          this.successMessage = "";
+          this.errorMessage = "Došlo je do greške prilikom dodavanja sporta.";
+          return;
+        }
+
         if (data.message == "ok") {
-          alert("Uspesno dodat sport");
-          window.location.reload();
-        } else {
-          alert("Doslo je do greske prilikom dodavanja sporta!");
+          this.errorMessage = "";
+          this.successMessage = "Uspešno dodat sport";
+          
+          this.selectedSportName = "";
+          this.selectedDisciplineName = "";
+          this.selectedType = "invidual"
+        } else if (data.message == "already exists") {
+          this.successMessage = "";
+          this.errorMessage = "Sport i disciplina već postoje u bazi.";
         }
       });
   }
@@ -61,14 +77,16 @@ export class OrgEditSportsComponent implements OnInit {
       return true;
     }
 
+    if (this.selectedType != "team" && this.selectedType != "individual") {
+      return true;
+    }
+
     if (this.selectedType == "team") {
       if (this.selectedMinPlayers == undefined || this.selectedMinPlayers == null) {
-        alert('lala');
         return true;
       }
 
       if (this.selectedMaxPlayers == undefined || this.selectedMaxPlayers == null) {
-        alert('lala');
         return true;
       }
     }
