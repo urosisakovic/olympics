@@ -70,6 +70,9 @@ export class LeadRegisterCompetitorsComponent implements OnInit {
 
   selectedFile!: File;
 
+  successMessage: string = "";
+  errorMessage: string = "";
+
   isJSONFile(filepath: string) {
     let allowedExtenstion = ".json";
     if (filepath.substr(filepath.length - allowedExtenstion.length, allowedExtenstion.length).toLowerCase() == allowedExtenstion.toLowerCase()) {
@@ -127,7 +130,8 @@ export class LeadRegisterCompetitorsComponent implements OnInit {
 
   addPariticipant() {
     if (this.addParticipantEmptyData()) {
-      alert("Sva polja moraju biti popunjena");
+      this.successMessage = "";
+      this.errorMessage = "Sva polja moraju biti popunjena";
       return;
     }
 
@@ -138,12 +142,16 @@ export class LeadRegisterCompetitorsComponent implements OnInit {
       this.selectedSport,
       this.selectedDiscipline).subscribe((data: any) => {
         if (data.message == "other sport") {
-          alert("Takmicar je vec prijavljen za drugi sport!");
+          this.successMessage = "";
+          this.errorMessage = "Takmicar je vec prijavljen za drugi sport.";
         } else if (data.message == "already added") {
-          alert("Takmicar je vec dodat za datu disciplinu!");
+          this.successMessage = "";
+          this.errorMessage = "Takmicar je vec dodat za datu disciplinu.";
         } else if (data.message == "ok") {
-          alert("Uspesno dodat takmicar u datoj disciplini!");
-          window.location.reload();
+          this.errorMessage = "";
+          this.successMessage = "Uspesno dodat takmicar u datoj disciplini.";
+          this.selectedFirstName = "";
+          this.selectedLastName = "";
         }
       });
   }

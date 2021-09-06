@@ -33,7 +33,6 @@ export class ParticipantService {
       discipline: discipline
     };
 
-    alert("Sending post request...");
     return this.http.post(`${this.uri}/add-participants`, data);
   }
 }
