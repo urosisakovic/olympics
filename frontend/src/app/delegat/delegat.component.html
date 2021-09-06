@@ -1,5 +1,10 @@
 <h1>Unos rasporeda i rezultata</h1>
 
 <form>
-    
+    <div class="form-group">
+        <label for="sport-select">Takmicenje</label>
+        <select class="form-control" name='sport-select' [(ngModel)]="selectedCompetition" (change)="onCompetitionSelectChange()">
+            <option [ngValue]='s' *ngFor='let s of allCompetitions'>{{s}}</option>
+        </select>
+    </div>
 </form>
