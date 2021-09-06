@@ -38,6 +38,17 @@ router.route('/login').post((req, res) => {
     })
 });
 
+router.route('/change-password').post((req, res) => {
+    let username = req.body.username;
+    let newPassword = req.body.newPassword;
+
+    user.collection.updateOne(
+        {"username": username},
+        {$set: {"password": newPassword}});
+
+    res.status(200).json({'message': "ok"});
+});
+
 router.route('/register-request').post((req, res) => {
     console.log("/register-request route hit");
     let username = req.body.username;

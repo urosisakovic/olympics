@@ -58,4 +58,14 @@ export class UsersService {
     return this.http.get(`${this.uri}/all-registration-requests`);
   }
 
+  changePassword(username: string, oldPassword: string, newPassword: string) {
+    const data = {
+      username: username,
+      oldPassword: oldPassword,
+      newPassword: newPassword
+    };
+
+    return this.http.post(`${this.uri}/change-password`, data);
+  }
+
 }
