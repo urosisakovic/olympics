@@ -32,6 +32,7 @@
           <li><a class="dropdown-item nav-link" routerLink='/' (click)="logout()">Odjavi se</a></li>
         </ul>
         <ul *ngIf="loggedUser.type == 'delegat'" class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item nav-link" routerLink='/delegat-manage-competitions'>Unos rasporeda i rezultata</a></li>
           <li><a class="dropdown-item nav-link" routerLink='/change-password'>Promeni lozinku</a></li>
           <li><a class="dropdown-item nav-link" routerLink='/' (click)="logout()">Odjavi se</a></li>
         </ul>

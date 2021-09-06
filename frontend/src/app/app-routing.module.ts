@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { CountriesComponent } from './countries/countries.component';
+import { DelegatComponent } from './delegat/delegat.component';
 import { HomeComponent } from './home/home.component';
 import { LeadCompetitorsOverviewComponent } from './lead-competitors-overview/lead-competitors-overview.component';
 import { LeadRegisterCompetitorsComponent } from './lead-register-competitors/lead-register-competitors.component';
@@ -27,7 +28,8 @@ const routes: Routes = [
   {path: 'org-edit-users', component: OrgEditUsersComponent},
   {path: 'change-password', component: ChangePasswordComponent},
   {path: 'lead-register-competitors', component: LeadRegisterCompetitorsComponent},
-  {path: 'lead-competitors-overview', component: LeadCompetitorsOverviewComponent}
+  {path: 'lead-competitors-overview', component: LeadCompetitorsOverviewComponent},
+  {path: 'delegat-manage-competitions', component: DelegatComponent}
 ];
 
 @NgModule({

@@ -20,6 +20,7 @@ import { OrgEditUsersComponent } from './org-edit-users/org-edit-users.component
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
+import { DelegatComponent } from './delegat/delegat.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { HomeComponent } from './home/home.component';
     LeadCompetitorsOverviewComponent,
     OrgEditUsersComponent,
     ChangePasswordComponent,
-    HomeComponent
+    HomeComponent,
+    DelegatComponent
   ],
   imports: [
     BrowserModule,
