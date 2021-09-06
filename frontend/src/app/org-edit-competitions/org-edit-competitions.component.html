@@ -1,76 +1,65 @@
-<h1>Dodaj takmicenje</h1>
+<h1>Dodaj takmičenje</h1>
+<form>
+    <div class="form-group">
+        <label for="name">Naziv takmičenja</label>
+        <input type="text" class="form-control" name='comp-name'>
+    </div>
+    <div class="form-group">
+        <label for="sport-select">Sport</label>
+        <select class="form-control" name='sport-select' [(ngModel)]="selectedSport" (change)="onSportSelectChange()">
+            <option [ngValue]='s' *ngFor='let s of allSports'>{{s}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="discipline-select">Disciplina</label>
+        <select class="form-control" name='discipline-select' [(ngModel)]="selectedDiscipline" [disabled]="relatedDisciplines.length <= 1">
+            <option [ngValue]='d' *ngFor='let d of relatedDisciplines'>{{d}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="gender-radio">Pol</label>
+        <div class="form-check" name="gender-radio">
+            <input class="form-check-input" type="radio" name="gender" [value]='"M"' [(ngModel)]='selectedGender'>
+            <label class="form-check-label" for="exampleRadios1">
+            Muški
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="gender" [value]='"F"' [(ngModel)]='selectedGender'>
+            <label class="form-check-label" for="exampleRadios2">
+            Ženski
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="start-date">Početak takmičenja</label>
+        <input type="text" class="form-control" name='start-date'>
+    </div>
+    <div class="form-group">
+        <label for="end-date">Kraj takmičenja</label>
+        <input type="text" class="form-control" name='end-date'>
+    </div>
+    <div class="form-group">
+        <label for="location">Lokacija</label>
+        <input type="text" class="form-control" name='location'>
+    </div>
+    <div class="form-group">
+        <label for="delegat-select">Delegat</label>
+        <select class="form-control" name='delegat-select' [(ngModel)]="selectedDelegat">
+            <option [ngValue]='d' *ngFor='let d of allDelegats'>{{d.username}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" (click)="createCompetition()">Pretraži</button>
+    </div>
+</form>
 
+<h1>Takmičari</h1>
+<table></table>
+
+<!--
 <form>
     <table>
-        <tr>
-            <td>
-                Naziv takmicenja:
-            </td>
-            <td>
-                <input type="text">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Sport:
-            </td>
-            <td>
-                <select name='sport-select' [(ngModel)]="selectedSport">
-                    <option [ngValue]='s' *ngFor='let s of allSports'>{{s.name}}</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Pol:
-            </td>
-            <td>
-                <input type="radio" name="gender" [value]='"M"' [(ngModel)]='selectedGender'> M
-                <input type="radio" name="gender" [value]='"F"' [(ngModel)]='selectedGender'> Z
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Disciplina:
-            </td>
-            <td>
-                <select></select>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Datum pocetka:
-            </td>
-            <td>
-                <input type="text" [(ngModel)]='selectedStartDateStr'>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Datum kraja:
-            </td>
-            <td>
-                <input type="text" [(ngModel)]='selectedEndsDateStr'>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Lokacija:
-            </td>
-            <td>
-                <input type="text" [(ngModel)]='selectedLocation'>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Delegat:
-            </td>
-            <td>
-                <select name='delegat-select' [(ngModel)]="selectedDelegat">
-                    <option [ngValue]='d' *ngFor='let d of allDelegats'>{{d.firstName}} {{d.lastName}}</option>
-                </select>
-            </td>
-        </tr>
         <tr>
             <td colspan="2" align="center">
                 <h2>Takmicari</h2>
@@ -138,5 +127,4 @@
         </tr>
     </table>
 </form>
-
-<h1>Izbrisi takmicenje</h1>
+-->

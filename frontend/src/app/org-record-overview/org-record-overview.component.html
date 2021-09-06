@@ -1,25 +1,31 @@
 
 <h1>Pregled rekorda</h1>
 
-<table>
-    <tr>
-        <td>Sport</td>
-        <td>Disciplina</td>
-        <td>Mesto</td>
-        <td>Godina</td>
-        <td>Takmicar</td>
-        <td>Rekord</td>
-    </tr>
-    <tr *ngFor="let r of allRecords">
-        <td>{{r.sport}}</td>
-        <td>{{r.discipline}}</td>
-        <td>{{r.place}}</td>
-        <td>{{r.year}}</td>
-        <td>{{r.recordHolder}}</td>
-        <td>{{r.record}}</td>
-    </tr>
+<table class="table table-striped">
+    <thead class="table table-dark">
+        <tr>
+            <td>Sport</td>
+            <td>Disciplina</td>
+            <td>Mesto</td>
+            <td>Godina</td>
+            <td>Takmičar</td>
+            <td>Rekord</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let r of allRecords">
+            <td>{{r.sport}}</td>
+            <td>{{r.discipline}}</td>
+            <td>{{r.place}}</td>
+            <td>{{r.year}}</td>
+            <td>{{r.recordHolder}}</td>
+            <td>{{r.record}}</td>
+        </tr>
+    </tbody>
 </table>
 
+
+<!--
 <h1>Dodaj rekord</h1>
 <form>
     <table>
@@ -73,3 +79,4 @@
         </tr>
     </table>
 </form>
+-->

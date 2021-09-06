@@ -18,25 +18,57 @@ export class OrgEditCompetitionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.sportService.getAllSports().subscribe((data: any) => {
-      this.allSports = data;
+      this.allSportsWithDisciplines = data;
+
+      this.allSports = [];
+
+      for (let i = 0; i < this.allSportsWithDisciplines.length; i++) {
+        if (this.allSports.includes(this.allSportsWithDisciplines[i].name)) {
+          continue;
+        } else {
+          this.allSports.push(this.allSportsWithDisciplines[i].name);
+        }
+      }
     });
     this.participantService.getAllDelegats().subscribe((data: any) => {
       this.allDelegats = data;
-      this.isLoaded = true;
     });
   }
 
-  isLoaded: boolean = false;
+  allSports!: string[];
 
-  allSports!: Sport[];
+  relatedDisciplines: string[] = [];
+  selectedDiscipline!: string;
+
+  allSportsWithDisciplines!: Sport[];
+
   allDelegats!: User[];
+  selectedDelegat!: User;
 
-  selectedSport!: Sport;
+  selectedSport!: string;
   selectedGender!: string;
   selectedStartDateStr!: string;
-  selectedStartDate!: Date;
   selectedEndsDateStr!: string;
-  selectedEndDate!: Date;
   selectedLocation!: string;
-  selectedDelegat!: User;
+
+  onSportSelectChange() {
+    if (this.selectedSport == null || this.selectedSport == undefined) {
+      return;
+    }
+
+    this.relatedDisciplines = [];
+    for (let i = 0; i < this.allSportsWithDisciplines.length; i++) {
+      if (this.allSportsWithDisciplines[i].name == this.selectedSport) {
+        this.relatedDisciplines.push(this.allSportsWithDisciplines[i].discipline);
+      }
+    }
+
+    if (this.relatedDisciplines.length == 1 && this.relatedDisciplines[0] == "") {
+      this.relatedDisciplines = [];
+    }
+  }
+
+  createCompetition() {
+    
+  }
 }
