@@ -34,9 +34,12 @@ export class OrgEditCompetitionsComponent implements OnInit {
     this.participantService.getAllDelegats().subscribe((data: any) => {
       this.allDelegats = data;
     });
+    this.participantService.getAllParticipants().subscribe((data: any) => {
+      this.allParticipants = data;
+    });
   }
 
-  allSports!: string[];
+  allSports: string[] = [];
 
   relatedDisciplines: string[] = [];
   selectedDiscipline!: string;
@@ -57,9 +60,10 @@ export class OrgEditCompetitionsComponent implements OnInit {
   selectedMaxPoints!: number;
   selectedTryCount!: number;
 
-  validPariticipants!: Participant[];
-  pickedParticipants!: Participant[];
+  validPariticipants: Participant[] = [];
+  pickedParticipants: Participant[] = [];
   selectedValidParticipant!: Participant;
+  allParticipants!: Participant[];
 
   successMessage!: string;
   errorMessage!: string;
@@ -76,8 +80,10 @@ export class OrgEditCompetitionsComponent implements OnInit {
       }
     }
 
-    if (this.relatedDisciplines.length == 1 && this.relatedDisciplines[0] == "") {
-      this.relatedDisciplines = [];
+    this.selectedDiscipline = this.relatedDisciplines[0];
+
+    if (this.selectedGender != undefined) {
+      this.loadValidParticipants();
     }
   }
 
@@ -127,5 +133,27 @@ export class OrgEditCompetitionsComponent implements OnInit {
     }
 
     return false;
+  }
+
+  loadValidParticipants() {
+    alert("loadValidParticipants");
+
+    this.validPariticipants = [];
+
+    for (let i = 0; i < this.allParticipants.length; i++) {
+      if (this.allParticipants[i].sport == this.selectedSport) {
+        if (this.allParticipants[i].disciplines.includes(this.selectedDiscipline)) {
+          if (this.allParticipants[i].gender == this.selectedGender) {
+            this.validPariticipants.push(this.allParticipants[i]);
+          }
+        }
+      }
+    }
+  }
+
+  onGenderSelect() {
+    if (this.selectedSport != undefined) {
+      this.loadValidParticipants();
+    }
   }
 }

@@ -19,13 +19,13 @@
     <div class="form-group">
         <label for="gender-radio">Pol</label>
         <div class="form-check" name="gender-radio">
-            <input class="form-check-input" type="radio" name="gender" [value]='"M"' [(ngModel)]='selectedGender'>
+            <input class="form-check-input" type="radio" name="gender" [value]='"M"' [(ngModel)]='selectedGender' (ngModelChange)='onGenderSelect()'>
             <label class="form-check-label" for="exampleRadios1">
             Muški
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="gender" [value]='"F"' [(ngModel)]='selectedGender'>
+            <input class="form-check-input" type="radio" name="gender" [value]='"F"' [(ngModel)]='selectedGender' (ngModelChange)='onGenderSelect()'>
             <label class="form-check-label" for="exampleRadios2">
             Ženski
             </label>
@@ -80,8 +80,8 @@
     </div>
     <div class="form-group">
         <label for="participant-select">Takmičari</label>
-        <select class="form-control" name='participant-select' [(ngModel)]="selectedValidParticipant">
-            <option [ngValue]='vp' *ngFor='let vp of validPariticipants'>{{vp}}</option>
+        <select class="form-control" name='participant-select' [(ngModel)]="selectedValidParticipant" [disabled]="validPariticipants.length <= 1">
+            <option [ngValue]='vp' *ngFor='let vp of validPariticipants'>{{vp.name}}</option>
         </select>
     </div>
 
