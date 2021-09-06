@@ -23,4 +23,12 @@ export class DelegatComponent implements OnInit {
 
   }
 
+  createRange(num: number){
+    return new Array(num);
+  }
+
+  addScore(index: number) {
+
+  }
+
 }

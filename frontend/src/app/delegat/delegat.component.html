@@ -14,8 +14,37 @@
 <h3>Broj pokušaja: {{selectedCompetition.tryCount}}</h3>
 </div>
 
-<table *ngIf="selectedCompetition != undefined && selectedCompetition.competitionFormat == 'finals'">
-    <thead>
-
+<table *ngIf="selectedCompetition != undefined && selectedCompetition.competitionFormat == 'finals'" class="table table-striped">
+    <thead class="table table-dark">
+        <tr>
+            <td>Takmičar</td>
+            <td *ngFor="let item of createRange(selectedCompetition.tryCount); let i = index;">
+                Pokušaj {{i + 1}}
+            </td>
+            <td>Novi rezultat</td>
+            <td>Zabeleži rezultat</td>
+        </tr>
     </thead>
+    <tbody>
+        <tr *ngFor="let c of selectedCompetition.pickedParticipants; let i = index;">
+            <td>
+                {{c}}
+            </td>
+            <td>
+                ?
+            </td>
+            <td>
+                ?
+            </td>
+            <td>
+                ?
+            </td>
+            <td>
+                <input type="text" class="form-control">
+            </td>
+            <td>
+                <button class="btn btn-outline-primary" (click)="addScore(i)">Dodaj rezultat</button>
+            </td>
+        </tr>
+    </tbody>
 </table>
