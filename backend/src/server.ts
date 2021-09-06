@@ -379,6 +379,8 @@ router.route('/add-competition').post((req, res) => {
     let competitionFormat = req.body.competitionFormat;
     let resultFormat = req.body.resultFormat;
     let pickedParticipants = req.body.pickedParticipants;
+    let tryCount = req.body.tryCount;
+    let maxPoints  = req.body.maxPoints;
 
     const competitionData = {
         name: name,
@@ -391,7 +393,9 @@ router.route('/add-competition').post((req, res) => {
         delegatUsername: delegatUsername,
         competitionFormat: competitionFormat,
         resultFormat: resultFormat,
-        pickedParticipants: pickedParticipants
+        pickedParticipants: pickedParticipants,
+        tryCount: tryCount,
+        maxPoints: maxPoints
     };
 
     let newCompetition = new competition(competitionData);
@@ -404,6 +408,18 @@ router.route('/add-competition').post((req, res) => {
         }
     });
 });
+
+router.route('/all-competitions').get((req, res) => {
+    console.log("/all-competitions route hit");
+    competition.find({}, (err, rr) => {
+        if (err)
+            console.log(err);
+        else {
+            res.json(rr);
+        }
+    });
+});
+
 
 app.use('/', router);
 app.listen(4000, () => console.log(`Express server running on port 4000`));

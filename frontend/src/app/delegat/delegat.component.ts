@@ -12,7 +12,7 @@ export class DelegatComponent implements OnInit {
 
   ngOnInit(): void {
     this.competitionsService.getAllCompetitions().subscribe((data: any) => {
-
+      this.allCompetitions = data;
     });
   }
 

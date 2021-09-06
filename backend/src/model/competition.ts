@@ -35,7 +35,13 @@ let Competition = new Schema({
     },
     pickedParticipants: [{
         type: String
-    }]
+    }],
+    tryCountr: {
+        type: Number
+    },
+    maxPoints: {
+        type: Number
+    }
 });
 
 export default mongoose.model('Competition', Competition, 'competitions');

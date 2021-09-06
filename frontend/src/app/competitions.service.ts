@@ -25,7 +25,9 @@ export class CompetitionsService {
       delegatUsername: string,
       competitionFormat: string,
       resultFormat: string,
-      pickedParticipants: string[]) {
+      pickedParticipants: string[],
+      tryCount: number,
+      maxPoints: number) {
     const data = {
       name: name,
       sport: sport,
@@ -37,7 +39,9 @@ export class CompetitionsService {
       delegatUsername: delegatUsername,
       competitionFormat: competitionFormat,
       resultFormat: resultFormat,
-      pickedParticipants: pickedParticipants
+      pickedParticipants: pickedParticipants,
+      tryCount: tryCount,
+      maxPoints: maxPoints
     };
 
     return this.http.post(`${this.uri}/add-competition`, data);

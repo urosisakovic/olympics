@@ -129,6 +129,20 @@ export class OrgEditCompetitionsComponent implements OnInit {
       return;
     }
 
+    if (this.selectedCompetitionFormat == "finals") {
+      if (this.selectedTryCount == undefined) {
+        this.successMessage = "";
+        this.errorMessage = "Nije unet broj pokušaja.";
+      }
+    }
+
+    if (this.selectedTryCount == undefined) {
+      this.selectedTryCount = -1;
+    }
+    if (this.selectedMaxPoints == undefined) {
+      this.selectedMaxPoints = -1;
+    }
+
     this.competitionsService.addCompetition(
       this.selectedName,
       this.selectedSport,
@@ -140,7 +154,10 @@ export class OrgEditCompetitionsComponent implements OnInit {
       this.selectedDelegat.username,
       this.selectedCompetitionFormat,
       this.selectedResultFormat,
-      this.pickedParticipants).subscribe((data: any) => {
+      this.pickedParticipants,
+      this.selectedTryCount,
+      this.selectedMaxPoints
+      ).subscribe((data: any) => {
       if (data) {
         if (data.message == "ok") {
           this.errorMessage = "";

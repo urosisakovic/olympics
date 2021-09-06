@@ -2,9 +2,20 @@
 
 <form>
     <div class="form-group">
-        <label for="sport-select">Takmicenje</label>
+        <label for="sport-select">Takmičenje</label>
         <select class="form-control" name='sport-select' [(ngModel)]="selectedCompetition" (change)="onCompetitionSelectChange()">
-            <option [ngValue]='s' *ngFor='let s of allCompetitions'>{{s}}</option>
+            <option [ngValue]='s' *ngFor='let s of allCompetitions'>{{s.name}}</option>
         </select>
     </div>
 </form>
+
+<div *ngIf="selectedCompetition != undefined && selectedCompetition.competitionFormat == 'finals'">
+<h3>Format rezultata: {{selectedCompetition.resultFormat}}</h3>
+<h3>Broj pokušaja: {{selectedCompetition.tryCount}}</h3>
+</div>
+
+<table *ngIf="selectedCompetition != undefined && selectedCompetition.competitionFormat == 'finals'">
+    <thead>
+
+    </thead>
+</table>
