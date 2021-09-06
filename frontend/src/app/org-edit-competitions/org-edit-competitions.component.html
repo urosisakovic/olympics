@@ -1,5 +1,5 @@
-<h1>Dodaj takmičenje</h1>
 <form>
+    <h1>Dodaj takmičenje</h1>
     <div class="form-group">
         <label for="name">Naziv takmičenja</label>
         <input type="text" class="form-control" name='comp-name' [(ngModel)]="selectedName">
@@ -49,12 +49,46 @@
             <option [ngValue]='d' *ngFor='let d of allDelegats'>{{d.username}}</option>
         </select>
     </div>
+
     <div class="form-group">
-        <button type="submit" class="btn btn-primary" (click)="createCompetition()">Pretraži</button>
+        <label for="format-select">Format takmičenja</label>
+        <select class="form-control" name='format-select' [(ngModel)]="selectedCompetitionFormat">
+            <option [ngValue]='"group"'>Grupa pa kup</option>
+            <option [ngValue]='"cup"'>Kup</option>
+            <option [ngValue]='"finals"'>Individualno finale</option>
+        </select>
+    </div>
+    <div *ngIf="selectedCompetitionFormat == 'group' || selectedCompetitionFormat == 'cup'" class="form-group">
+        <label for="max-score">Maksimum poena</label>
+        <input type="number" class="form-control" name='max-score' [(ngModel)]="selectedMaxPoints">
+    </div>
+    <div *ngIf="selectedCompetitionFormat == 'finals'" class="form-group">
+        <label for="try-count">Broj pokušaja</label>
+        <input type="number" class="form-control" name='try-count' [(ngModel)]="selectedTryCount">
+    </div>
+    
+
+    <div class="form-group">
+        <label for="format-select">Format rezultata</label>
+        <select class="form-control" name='format-select' [(ngModel)]="selectedResultFormat">
+            <option [ngValue]='"P1_T1:P2_T2"'>P1_T1:P2_T2</option>
+            <option [ngValue]='"SS,TT"'>SS,TT</option>
+            <option [ngValue]='"MM,SS,TT"'>MM,SS,TT</option>
+            <option [ngValue]='"M,CM"'>M,CM</option>
+            <option [ngValue]='"MM,CM"'>MM,CM</option>
+            <option [ngValue]='"HH:MM:CC"'>HH:MM:CC</option>
+            <option [ngValue]='"P1_I1:P2_I2"'>P1_I1:P2_I2</option>
+        </select>
+    </div>
+
+    <h1>Takmičari</h1>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" (click)="createCompetition()">Napravi takmičenje</button>
     </div>
 </form>
 
-<h1>Takmičari</h1>
+
 <table></table>
 
 <!--

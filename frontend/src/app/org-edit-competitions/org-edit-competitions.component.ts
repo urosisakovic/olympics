@@ -51,6 +51,10 @@ export class OrgEditCompetitionsComponent implements OnInit {
   selectedStartDateStr!: string;
   selectedEndDateStr!: string;
   selectedLocation!: string;
+  selectedCompetitionFormat!: string;
+  selectedResultFormat!: string;
+  selectedMaxPoints!: number;
+  selectedTryCount!: number;
 
   onSportSelectChange() {
     if (this.selectedSport == null || this.selectedSport == undefined) {
