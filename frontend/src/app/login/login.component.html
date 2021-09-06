@@ -9,6 +9,9 @@
         <label for="password">Lozinka</label>
         <input type="password" class="form-control" name='password' [(ngModel)]='password'>
     </div>
-    <button type="submit" class="btn btn-primary" (click)="login()">Prijavi se</button><br/>
-    <small id="emailHelp" class="form-text text-muted">Nemas nalog? <a routerLink="/register">Registruj se.</a></small>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary" (click)="login()">Prijavi se</button><br/>
+      <small id="emailHelp" class="form-text text-muted">Nemas nalog? <a routerLink="/register">Registruj se.</a></small>
+    </div>
+    <div *ngIf="errorMessage != ''" class="alert alert-danger">{{ errorMessage }}</div>
 </form>

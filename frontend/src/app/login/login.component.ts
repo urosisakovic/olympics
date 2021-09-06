@@ -23,6 +23,8 @@ export class LoginComponent implements OnInit {
   password!: string;
   loggedUser!: User;
 
+  errorMessage: string = "";
+
   login() {
     this.usersService.login(this.username, this.password).subscribe((user: any) => {
 
@@ -32,7 +34,7 @@ export class LoginComponent implements OnInit {
         
       }
       else {
-        alert("invalid username or password");
+        this.errorMessage = "Netačno korisničko ime ili lozinka.";
         return;
       }
     });

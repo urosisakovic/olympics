@@ -37,5 +37,9 @@
             <option [ngValue]='"lead"'>Vođa nacionalne delegacije</option>
         </select>
     </div>
-    <button type="submit" class="btn btn-primary" (click)="register()">Registruj se</button><br/>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" (click)="register()">Registruj se</button><br/>
+    </div>
+    <div *ngIf="successMessage != ''" class="alert alert-success">{{ successMessage }}</div>
+    <div *ngIf="errorMessage != ''" class="alert alert-danger">{{ errorMessage }}</div>
 </form>

@@ -35,24 +35,31 @@ export class RegisterComponent implements OnInit {
   selectedEmail!: string;
   selectedType!: string;
 
+  successMessage: string = "";
+  errorMessage: string = "";
+
   register() {
     if (this.emptyData()) {
-      alert("Sva polja moraju biti popunjena");
+      this.successMessage = "";
+      this.errorMessage = "Sva polja moraju biti popunjena.";
       return;
     }
 
     if (!(this.passwordService.isValidPassword(this.selectedPassword))) {
-      alert("Nevalidna sifra");
+      this.successMessage = "";
+      this.errorMessage = "Nevalidna lozinka.";
       return;
     }
 
     if (this.selectedPassword != this.selectedRepeatedPassword) {
-      alert("Ponovljena sifra se razlikuje od originalne");
+      this.successMessage = "";
+      this.errorMessage = "Ponovljena sifra se razlikuje od originalne.";
       return;
     }
 
     if (!(this.isValidEmail(this.selectedEmail))) {
-      alert("Netacan email");
+      this.successMessage = "";
+      this.errorMessage = "Nevalidan email.";
       return;
     }
 
@@ -65,11 +72,20 @@ export class RegisterComponent implements OnInit {
       this.selectedEmail,
       this.selectedType).subscribe((res: any) => {
         if (res.message == "ok") {
-          alert('Uspesno poslat zahtev za registraciju');
-          this.router.navigate(['/']);
+          this.errorMessage = "";
+          this.successMessage = "Uspešno je poslat zahtev za registraciju! Budi strpljiv dok organizator ne odobri tvoj nalog.";
+          
+          this.selectedUsername = "";
+          this.selectedPassword = "";
+          this.selectedRepeatedPassword = "";
+          this.selectedFirstName = "";
+          this.selectedLastName = "";
+          this.selectedEmail = "";
+          this.selectedType = "";
         }
         else if (res.message == "username exists") {
-          alert('Username vec postoji');
+          this.successMessage = "";
+          this.errorMessage = "Korisničko ime je zauzeto.";
         } 
       });
   }
