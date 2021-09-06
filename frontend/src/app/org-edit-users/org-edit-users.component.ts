@@ -21,9 +21,7 @@ export class OrgEditUsersComponent implements OnInit {
 
   accept(username: string) {
     this.userService.acceptRegistrationRequest(username).subscribe((data: any) => {
-      if (data.message == "ok") {
-        alert("Uspesno dodat nalog");
-      } else {
+      if (data == null || data == undefined || data.message != "ok") {
         alert("Doslo je do greske prilikom dodavanja naloga");
       }
     });
@@ -32,10 +30,8 @@ export class OrgEditUsersComponent implements OnInit {
 
   decline(username: string) {
     this.userService.declineRegistrationRequest(username).subscribe((data: any) => {
-      if (data.message == "ok") {
-        alert("Uspesno odbijen nalog");
-      } else {
-        alert("Doslo je do greske prilikom odbijanja naloga");
+      if (data == null || data == undefined || data.message != "ok") {
+        alert("Doslo je do greske prilikom dodavanja naloga");
       }
     });
     this.removeFromTable(username);

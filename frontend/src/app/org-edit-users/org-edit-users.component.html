@@ -3,7 +3,7 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <td>Korisnicko ime</td>
+            <td>Korisničko ime</td>
             <td>Zemlja</td>
             <td>Ime</td>
             <td>Prezime</td>
@@ -21,8 +21,8 @@
             <td>{{rr.lastName}}</td>
             <td>{{rr.email}}</td>
             <td>{{rr.type}}</td>
-            <td><button (click)="accept(rr.username)">Odobri</button></td>
-            <td><button (click)="decline(rr.username)">Obrisi</button></td>
+            <td><button class="btn btn-success" (click)="accept(rr.username)">Odobri</button></td>
+            <td><button class="btn btn-danger" (click)="decline(rr.username)">Obriši</button></td>
         </tr>
     </tbody>
 </table>
