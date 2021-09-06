@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ANALYZE_FOR_ENTRY_COMPONENTS, Component, OnInit } from '@angular/core';
 import { ParticipantService } from '../participant.service';
 import { SportService } from '../sport.service';
 import { Sport } from '../data/sport';
@@ -45,10 +45,11 @@ export class OrgEditCompetitionsComponent implements OnInit {
   allDelegats!: User[];
   selectedDelegat!: User;
 
+  selectedName!: string;
   selectedSport!: string;
   selectedGender!: string;
   selectedStartDateStr!: string;
-  selectedEndsDateStr!: string;
+  selectedEndDateStr!: string;
   selectedLocation!: string;
 
   onSportSelectChange() {
@@ -69,6 +70,50 @@ export class OrgEditCompetitionsComponent implements OnInit {
   }
 
   createCompetition() {
-    
+    if (this.emptyData()) {
+      alert("Sva polja moraju biti popunjena!");
+      return;
+    }
+
+    alert(this.selectedName);
+    alert(this.selectedSport);
+    alert(this.selectedDiscipline);
+    alert(this.selectedGender);
+    alert(this.selectedStartDateStr);
+    alert(this.selectedEndDateStr);
+    alert(this.selectedLocation);
+    alert(this.selectedDelegat.username)
+  }
+
+  emptyData() {
+    if (this.selectedName == undefined || this.selectedName == "") {
+      return true;
+    }
+
+    if (this.selectedSport == undefined) {
+      return true;
+    }
+
+    if (this.selectedGender == undefined) {
+      return true;
+    }
+
+    if (this.selectedStartDateStr == undefined || this.selectedStartDateStr == "") {
+      return true;
+    }
+
+    if (this.selectedEndDateStr == undefined || this.selectedEndDateStr == "") {
+      return true;
+    }
+
+    if (this.selectedLocation == undefined || this.selectedLocation == "") {
+      return true;
+    }
+
+    if (this.selectedDelegat == undefined) {
+      return true;
+    }
+
+    return false;
   }
 }

@@ -2,7 +2,7 @@
 <form>
     <div class="form-group">
         <label for="name">Naziv takmičenja</label>
-        <input type="text" class="form-control" name='comp-name'>
+        <input type="text" class="form-control" name='comp-name' [(ngModel)]="selectedName">
     </div>
     <div class="form-group">
         <label for="sport-select">Sport</label>
@@ -33,15 +33,15 @@
     </div>
     <div class="form-group">
         <label for="start-date">Početak takmičenja</label>
-        <input type="text" class="form-control" name='start-date'>
+        <input type="text" class="form-control" name='start-date' [(ngModel)]="selectedStartDateStr">
     </div>
     <div class="form-group">
         <label for="end-date">Kraj takmičenja</label>
-        <input type="text" class="form-control" name='end-date'>
+        <input type="text" class="form-control" name='end-date' [(ngModel)]="selectedEndDateStr">
     </div>
     <div class="form-group">
         <label for="location">Lokacija</label>
-        <input type="text" class="form-control" name='location'>
+        <input type="text" class="form-control" name='location' [(ngModel)]="selectedLocation">
     </div>
     <div class="form-group">
         <label for="delegat-select">Delegat</label>
