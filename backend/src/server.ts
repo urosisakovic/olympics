@@ -143,14 +143,12 @@ router.route('/accept-register-request').post((req, res) => {
                     if (err) {
                         console.log(err);
                     } else {
-                        res.status(200).json({'message': "ok"});
+                        console.log("Deleted: ");
+                        console.log(rr);
+                        rr.remove();
+                        return res.status(200).json({'message': 'ok'});
                     }
                 });            
-
-                console.log("Deleted: ");
-                console.log(rr);
-                rr.remove();
-                return res.status(200).json({'message': 'ok'});
             }
         }
     });

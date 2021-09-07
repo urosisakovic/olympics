@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CompetitionsService } from '../competitions.service';
 
 @Component({
@@ -8,15 +9,35 @@ import { CompetitionsService } from '../competitions.service';
 })
 export class DelegatComponent implements OnInit {
 
-  constructor(private competitionsService: CompetitionsService) { }
+  constructor(
+    private competitionsService: CompetitionsService,
+    private router: Router) { }
 
   ngOnInit(): void {
+    if (localStorage.getItem("loggedUser") != null && localStorage.getItem("loggedUser") != undefined) {
+      this.loggedUser = JSON.parse(localStorage.getItem("loggedUser") || '{}');
+    } else {
+      this.router.navigate(['']); 
+    }
+
     this.competitionsService.getAllCompetitions().subscribe((data: any) => {
-      this.allCompetitions = data;
+      this.everybodysAllCompetitions = data;
+
+      this.allCompetitions = [];
+      for (let i = 0; i < this.everybodysAllCompetitions.length; i++) {
+        if (this.everybodysAllCompetitions[i].delegatUsername == this.loggedUser.username) {
+          this.allCompetitions.push(this.everybodysAllCompetitions[i]);
+        }
+      }
     });
   }
 
+  loggedUser!: any;
+
   allCompetitions!: any[];
+
+  everybodysAllCompetitions!: any[];
+
   selectedCompetition: any;
   selectedResult: string[] = [];
 
@@ -24,14 +45,20 @@ export class DelegatComponent implements OnInit {
     let index = this.allCompetitions.indexOf(this.selectedCompetition);
 
     this.competitionsService.getAllCompetitions().subscribe((data: any) => {
-      this.allCompetitions = data;
+      this.everybodysAllCompetitions = data;
+
+      this.allCompetitions = [];
+      for (let i = 0; i < this.everybodysAllCompetitions.length; i++) {
+        if (this.everybodysAllCompetitions[i].delegatUsername == this.loggedUser.username) {
+          this.allCompetitions.push(this.everybodysAllCompetitions[i]);
+        }
+      }
 
       this.selectedCompetition = this.allCompetitions[index];
 
       for (let i = 0; i < this.selectedCompetition.pickedParticipants.length; i++) {
         this.selectedResult.push("");
       }
-  
     });
   }
 
@@ -93,10 +120,10 @@ export class DelegatComponent implements OnInit {
       if (result.length != 8) {
         return false;
       }
-      if (result[2] != ',' || result[6] != ',') {
+      if (result[2] != ',' || result[5] != ',') {
         return false;
       }
-      if (!this.isDigit(result[0]) || !this.isDigit(result[1]) || !this.isDigit(result[3]) || !this.isDigit(result[4]) || !this.isDigit(result[5]) || !this.isDigit(result[6])) {
+      if (!this.isDigit(result[0]) || !this.isDigit(result[1]) || !this.isDigit(result[3]) || !this.isDigit(result[4]) || !this.isDigit(result[6]) || !this.isDigit(result[7])) {
         return false;
       }
     } 
@@ -104,10 +131,10 @@ export class DelegatComponent implements OnInit {
       if (result.length != 8) {
         return false;
       }
-      if (result[2] != ':' || result[6] != ':') {
+      if (result[2] != ':' || result[5] != ':') {
         return false;
       }
-      if (!this.isDigit(result[0]) || !this.isDigit(result[1]) || !this.isDigit(result[3]) || !this.isDigit(result[4]) || !this.isDigit(result[5]) || !this.isDigit(result[6])) {
+      if (!this.isDigit(result[0]) || !this.isDigit(result[1]) || !this.isDigit(result[3]) || !this.isDigit(result[4]) || !this.isDigit(result[6]) || !this.isDigit(result[7])) {
         return false;
       }
     }
