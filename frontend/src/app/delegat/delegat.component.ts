@@ -21,9 +21,13 @@ export class DelegatComponent implements OnInit {
   selectedResult: string[] = [];
 
   onCompetitionSelectChange() {
-    for (let i = 0; i < this.selectedCompetition.pickedParticipants.length; i++) {
-      this.selectedResult.push("");
-    }
+    this.competitionsService.getAllCompetitions().subscribe((data: any) => {
+      this.allCompetitions = data;
+
+      for (let i = 0; i < this.selectedCompetition.pickedParticipants.length; i++) {
+        this.selectedResult.push("");
+      }
+    });
   }
 
   createRange(num: number){
@@ -39,11 +43,17 @@ export class DelegatComponent implements OnInit {
     this.selectedCompetition.state[index].push(this.selectedResult[index]);
     this.selectedResult[index] = "";
 
-    // TODO: update baze
+    this.competitionsService.updateState(this.selectedCompetition.name, this.selectedCompetition.state).subscribe((data: any) => {
+      if (data && data.message) {
+        alert("Sacuvano stanje!");
+      } else {
+        alert("Doslo je do greske!");
+      }
+    });
 
     if (this.finished()) {
       alert("Gotovo takmicenje, delimo medalje!");
-      return;
+      this.declareWinner();
     }
 
   }
@@ -51,6 +61,10 @@ export class DelegatComponent implements OnInit {
   validFormat() {
     // TODO
     return true;
+  }
+
+  declareWinner() {
+    // TODO: Podeli medalje, obrisi takmicenje
   }
 
   finished() {

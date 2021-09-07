@@ -381,6 +381,11 @@ router.route('/add-competition').post((req, res) => {
     let pickedParticipants = req.body.pickedParticipants;
     let tryCount = req.body.tryCount;
     let maxPoints  = req.body.maxPoints;
+    
+    let state = [];
+    for (let i = 0; i < pickedParticipants.length; i++) {
+        state.push(pickedParticipants[i]);
+    }
 
     const competitionData = {
         name: name,
@@ -395,7 +400,8 @@ router.route('/add-competition').post((req, res) => {
         resultFormat: resultFormat,
         pickedParticipants: pickedParticipants,
         tryCount: tryCount,
-        maxPoints: maxPoints
+        maxPoints: maxPoints,
+        state: state
     };
 
     let newCompetition = new competition(competitionData);
@@ -419,6 +425,20 @@ router.route('/all-competitions').get((req, res) => {
         }
     });
 });
+
+router.route('/update-competition').post((req, res) => {
+    console.log("/update-competition route hit");
+
+    let state = req.body.state;
+    let compName = req.body.compName;
+
+    competition.collection.updateOne(
+        {"name": compName},
+        {$set: {"state": state}});
+
+    res.status(200).json({'message': "ok"});
+});
+
 
 
 app.use('/', router);

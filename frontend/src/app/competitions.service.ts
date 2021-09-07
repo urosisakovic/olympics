@@ -46,4 +46,13 @@ export class CompetitionsService {
 
     return this.http.post(`${this.uri}/add-competition`, data);
   }
+
+  updateState(compName: string, state: string[][]) {
+    const data = {
+      compName: compName,
+      state: state
+    };
+
+    return this.http.post(`${this.uri}/update-competition`, data);
+  }
 }
