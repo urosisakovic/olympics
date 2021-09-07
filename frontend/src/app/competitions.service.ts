@@ -55,4 +55,19 @@ export class CompetitionsService {
 
     return this.http.post(`${this.uri}/update-competition`, data);
   }
+
+  assignMedals(
+    compName: string,
+    goldMedalWinner: string,
+    silverMedalWinner: string,
+    bronzeMedalWinner: string) {
+      const data = {
+        name: compName,
+        goldMedalWinner: goldMedalWinner,
+        silverMedalWinner: silverMedalWinner,
+        bronzeMedalWinner: bronzeMedalWinner
+      };
+
+      return this.http.post(`${this.uri}/assigne-medals`, data);
+  }
 }

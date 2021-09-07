@@ -384,7 +384,7 @@ router.route('/add-competition').post((req, res) => {
     
     let state = [];
     for (let i = 0; i < pickedParticipants.length; i++) {
-        state.push(pickedParticipants[i]);
+        state.push([] as string[]);
     }
 
     const competitionData = {
@@ -437,6 +437,35 @@ router.route('/update-competition').post((req, res) => {
         {$set: {"state": state}});
 
     res.status(200).json({'message': "ok"});
+});
+
+router.route('/assign-medals').post((req, res) => {
+    console.log("/assign-medals route hit");
+
+    let name = req.body.compName;
+    let goldMedalWinner = req.body.goldMedalWinner;
+    let silverMedalWinner = req.body.silverMedalWinner;
+    let bronzeMedalWinner = req.body.bronzeMedalWinner;
+
+    participant.collection.updateOne(
+        {"name": goldMedalWinner},
+        {$inc: {"goldMedalsWon": 1}});
+
+    participant.collection.updateOne(
+        {"name": silverMedalWinner},
+        {$inc: {"silverMedalsWon": 1}});
+
+    participant.collection.updateOne(
+        {"name": bronzeMedalWinner},
+        {$inc: {"bronzeMedalsWon": 1}});
+
+    competition.findOne({'name': name}, function (err, rr) {
+        if (err) {
+            console.log(err);
+        }
+
+        rr.remove();
+    });
 });
 
 

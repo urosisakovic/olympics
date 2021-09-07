@@ -21,12 +21,17 @@ export class DelegatComponent implements OnInit {
   selectedResult: string[] = [];
 
   onCompetitionSelectChange() {
+    let index = this.allCompetitions.indexOf(this.selectedCompetition);
+
     this.competitionsService.getAllCompetitions().subscribe((data: any) => {
       this.allCompetitions = data;
+
+      this.selectedCompetition = this.allCompetitions[index];
 
       for (let i = 0; i < this.selectedCompetition.pickedParticipants.length; i++) {
         this.selectedResult.push("");
       }
+  
     });
   }
 
@@ -155,6 +160,12 @@ export class DelegatComponent implements OnInit {
     let goldMedalWinner = tempPart[tempPart.length - 1];
     let silverMedalWinner = tempPart[tempPart.length - 2];
     let bronzeMedalWinner = tempPart[tempPart.length - 3];
+
+    this.competitionsService.assignMedals(
+      this.selectedCompetition.name,
+      goldMedalWinner,
+      silverMedalWinner,
+      bronzeMedalWinner);
 
     alert(goldMedalWinner)
     alert(silverMedalWinner);
