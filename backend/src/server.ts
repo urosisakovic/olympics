@@ -442,10 +442,12 @@ router.route('/update-competition').post((req, res) => {
 router.route('/assign-medals').post((req, res) => {
     console.log("/assign-medals route hit");
 
-    let name = req.body.compName;
+    let name = req.body.name;
     let goldMedalWinner = req.body.goldMedalWinner;
     let silverMedalWinner = req.body.silverMedalWinner;
     let bronzeMedalWinner = req.body.bronzeMedalWinner;
+
+    console.log(name);
 
     participant.collection.updateOne(
         {"name": goldMedalWinner},
@@ -464,7 +466,9 @@ router.route('/assign-medals').post((req, res) => {
             console.log(err);
         }
 
-        rr.remove();
+        if (rr) {
+            rr.remove();
+        }
     });
 });
 

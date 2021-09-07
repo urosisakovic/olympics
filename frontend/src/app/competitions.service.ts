@@ -68,6 +68,7 @@ export class CompetitionsService {
         bronzeMedalWinner: bronzeMedalWinner
       };
 
-      return this.http.post(`${this.uri}/assigne-medals`, data);
+      alert("Sending post request...");
+      return this.http.post(`${this.uri}/assign-medals`, data);
   }
 }

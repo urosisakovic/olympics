@@ -50,7 +50,6 @@ export class DelegatComponent implements OnInit {
 
     this.competitionsService.updateState(this.selectedCompetition.name, this.selectedCompetition.state).subscribe((data: any) => {
       if (data && data.message) {
-        alert("Sacuvano stanje!");
       } else {
         alert("Doslo je do greske!");
       }
@@ -161,11 +160,20 @@ export class DelegatComponent implements OnInit {
     let silverMedalWinner = tempPart[tempPart.length - 2];
     let bronzeMedalWinner = tempPart[tempPart.length - 3];
 
+    alert(this.selectedCompetition);
+    alert(this.selectedCompetition.name);
+
     this.competitionsService.assignMedals(
       this.selectedCompetition.name,
       goldMedalWinner,
       silverMedalWinner,
-      bronzeMedalWinner);
+      bronzeMedalWinner).subscribe((data: any) => {
+        if (data) {
+          
+        } else {
+          alert("Nema odgovora!");
+        }
+      });
 
     alert(goldMedalWinner)
     alert(silverMedalWinner);
